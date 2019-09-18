@@ -3,5 +3,7 @@
         "activityBar.background": "#505",
         "titleBar.activeBackground": "#f0f",
         "titleBar.activeForeground": "#F5FDF5"
-    }
+    },
+    "javascript.format.enable": true,
+    "editor.formatOnSave": true
 }
