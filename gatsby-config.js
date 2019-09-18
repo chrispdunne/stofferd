@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Stofferd`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    title: `STOFFERD`,
+    description: ``,
     author: `@gatsbyjs`,
   },
   plugins: [
@@ -30,5 +30,25 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Josefin Sans`,
+            variants: [`400`, `600`],
+            // subsets: [`latin`],
+          },
+          {
+            family: `Vollkorn`,
+            variants: [`400`, `700`],
+          },
+          {
+            family: `Abril Fatface`,
+            variants: [`400`, `700`],
+          },
+        ],
+      },
+    },
   ],
 }
