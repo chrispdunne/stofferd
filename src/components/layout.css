@@ -1,16 +1,3 @@
-html {
-  font-family: sans-serif;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-family: 'Josefin Sans'
-}
-
 article,
 aside,
 details,
@@ -226,7 +213,8 @@ textarea {
 }
 
 html {
-  font: 112.5%/1.45em georgia, serif;
+  /* font: 112.5%/1.45em georgia, serif; */
+  font-size: 20px;
   box-sizing: border-box;
   overflow-y: scroll;
 }
@@ -245,7 +233,6 @@ html {
 
 body {
   color: hsla(0, 0%, 0%, 0.8);
-  font-family: georgia, serif;
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;
@@ -715,4 +702,30 @@ pre tt:after {
   html {
     font-size: 100%;
   }
+}
+
+/* CUSTOM STUFF */
+
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* font-family: 'Josefin Sans'; */
+  font-family: 'Vollkorn';
+  /* font-family: 'Abril Fatface'; */
+
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Josefin Sans';
+  text-transform: uppercase;
 }
