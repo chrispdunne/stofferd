@@ -72,12 +72,21 @@ const CrossSectionStyled = styled.div`
         height: 100vh;
         width: 100vw;
     }
+    .progress {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 3;
+    }
 `
 
 const CrossSection = () => (
     <CrossSectionStyled>
         <Controller>
             <Scene triggerHook="onLeave" duration="200%" pin>
+                {/* {progress => (
+                    <> */}
+                {/* <div className="progress">{progress}</div> */}
                 <Timeline wrapper={<div id="pinContainer" />}>
                     <div className="bg" />
 
@@ -99,6 +108,8 @@ const CrossSection = () => (
                         </section>
                     </Tween>
                 </Timeline>
+                {/* </>
+                )} */}
             </Scene>
         </Controller>
         {/* <div className="vignette" /> */}
