@@ -1,0 +1,40 @@
+@font-face {
+  font-family: 'G';
+  src: url('./fonts/GothamBook.eot');
+  /* IE9 Compat Modes */
+  src: url('./fonts/GothamBook.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */
+    url('./fonts/GothamBook.woff') format('woff'),
+    /* Pretty Modern Browsers */
+    url('./fonts/GothamBook.ttf') format('truetype'),
+    /* Safari, Android, iOS */
+    url('./fonts/GothamBook.svg') format('svg');
+  /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'G';
+  font-weight: bold;
+  src: url('./fonts/GothamBold.eot');
+  /* IE9 Compat Modes */
+  src: url('./fonts/GothamBold.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */
+    url('./fonts/GothamBold.woff') format('woff'),
+    /* Pretty Modern Browsers */
+    url('./fonts/GothamBold.ttf') format('truetype'),
+    /* Safari, Android, iOS */
+    url('./fonts/GothamBold.svg') format('svg');
+  /* Legacy iOS */
+}
+
+body {
+  margin: 0;
+  font-family: 'G', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
