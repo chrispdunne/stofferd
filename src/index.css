@@ -38,3 +38,41 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.btn {
+  appearance: none;
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  font-family: "G", sans-serif;
+  padding: 0.3rem 0.7rem 0.4rem;
+  font-size: 0.75rem;
+  position: relative;
+  transition: color 0.125s ease-in-out 0.125s;
+
+}
+
+.btn:hover {
+  color: #000;
+}
+
+.btn:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 30rem;
+  bottom: 0;
+  background: #fff;
+  /* transform: scaleX(0.001); */
+  /* transform-origin: 0; */
+  transition: right 0.25s ease-in-out;
+}
+
+.btn:hover:before {
+  /* transform: scaleX(1); */
+  right: 0;
+}

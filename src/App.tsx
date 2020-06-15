@@ -5,21 +5,25 @@ import styled from "styled-components"
 import Home from "./Pages/Home"
 import About from "./Pages/About"
 import Contact from "./Pages/Contact"
-import logoUrl from "./img/logo.png"
+import Logo from "./Logo"
 
 const Nav = styled.div`
-    position: fixed;
+    /* position: fixed;
     right: 0;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+    z-index: 1; */
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* height: 100vh; */
     ul {
+        position: fixed;
+        z-index: 1;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
     }
     li {
         list-style-type: none;
         text-align: right;
-        padding: 1rem 1rem;
     }
     a {
         color: #fff;
@@ -27,37 +31,76 @@ const Nav = styled.div`
         text-transform: uppercase;
         text-decoration: none;
         font-size: 20px;
+        padding: 1rem 3rem;
+        display: inline-block;
     }
     .logo {
-        flex: 0 0 calc(50% - 4rem);
+        /* flex: 0 0 calc(50% - 8rem); */
+        /* text-align: right; */
+        /* padding-top: 3rem; */
+        position: fixed;
+        z-index: 1;
+        right: 0;
+        top: 2rem;
     }
     .logo__img {
         max-width: 6rem;
     }
+    .reverse {
+        .logo,
+        ul {
+            left: 0;
+            right: initial;
+        }
+        ul {
+            padding: 0;
+        }
+        li {
+            text-align: left;
+        }
+        a {
+            color: #000;
+        }
+    }
 `
 
 function App() {
+    const navRef = React.useRef(null)
     return (
         <Router>
             <div>
-                <Nav>
+                <Nav ref={navRef} id="nav">
                     <Link to="/" className="logo">
-                        <img className="logo__img" src={logoUrl} />
+                        <Logo />
                     </Link>
                     <ul>
-                        <li>
+                        <li id="about">
                             <Link to="/about">About</Link>
                         </li>
 
-                        <li>
+                        <li id="contact">
                             <Link to="/contact">Contact</Link>
                         </li>
                     </ul>
+                    <div className="reverse" id="nav">
+                        <Link to="/" className="logo">
+                            <Logo background="#000" />
+                        </Link>
+                        <ul>
+                            <li id="about">
+                                <Link to="/about">About</Link>
+                            </li>
+
+                            <li id="contact">
+                                <Link to="/contact">Contact</Link>
+                            </li>
+                        </ul>
+                    </div>
                 </Nav>
 
                 <Switch>
                     <Route exact path="/">
-                        <Home />
+                        <Home navRef={navRef} />
                     </Route>
                     <Route path="/about">
                         <About />
