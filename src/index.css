@@ -51,7 +51,7 @@ code {
   font-size: 0.75rem;
   position: relative;
   transition: color 0.125s ease-in-out 0.125s;
-
+  text-transform: uppercase;
 }
 
 .btn:hover {

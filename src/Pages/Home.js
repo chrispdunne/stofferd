@@ -2,6 +2,10 @@ import React from "react"
 import Eye from "../Components/Eye"
 import styled from "styled-components"
 import { Controller, Scene } from "react-scrollmagic"
+import HomeSection from "../Components/HomeSection"
+import nike from "../img/nike.png"
+import ey from "../img/ey.png"
+import firm from "../img/firm.png"
 
 const Container = styled.div`
     height: 100vh;
@@ -60,7 +64,23 @@ const Home = ({ navRef }) => {
                 <Eye />
             </Container>
             <div id="trigger" />
-            <div style={{ height: "100vh" }} />
+            <HomeSection
+                title="Nike"
+                subtitle="React, WordPress"
+                img={<img className="client-logo" src={nike} alt="Nike" />}
+            />
+            <HomeSection
+                color="#000"
+                title="Ernst &amp; Young"
+                subtitle="React, TypeScript, GraphQl"
+                img={
+                    <img
+                        className="client-logo"
+                        src={ey}
+                        alt="Ernst &amp; Young"
+                    />
+                }
+            />
 
             <Controller>
                 <Scene

@@ -98,17 +98,50 @@ const Eye = () => {
         rotation: [0, 0, 0],
     }))
 
+    const [{ rotation: topLidRotation }, setTopLid] = useSpring(() => ({
+        config: {
+            mass: 1,
+            tension: 100,
+            friction: 26,
+        },
+        rotation: [5, 0, 1.56],
+    }))
+
+    const [{ rotation: bottomLidRotation }, setBottomLid] = useSpring(() => ({
+        config: {
+            mass: 1,
+            tension: 100,
+            friction: 26,
+        },
+        rotation: [5, 0, 1.56],
+    }))
+
     const onMouseMove = React.useCallback(
         ({ clientX: x, clientY: y }) => {
+            const yPosition =
+                (y + window.scrollY - window.innerHeight / 2) /
+                (window.innerHeight / 2)
+            const xPosition =
+                (x - window.innerWidth / 2) / (window.innerWidth / 2)
+
+            if (
+                yPosition < 0.1 &&
+                yPosition > -0.1 &&
+                xPosition < 0.1 &&
+                xPosition > -0.1
+            ) {
+                setBottomLid({ rotation: [3.15, 0, 1.56] })
+                setTopLid({ rotation: [6.175, 0, 1.56] })
+            } else {
+                setBottomLid({ rotation: [5, 0, 1.56] })
+                setTopLid({ rotation: [5, 0, 1.56] })
+            }
+
             set({
-                rotation: [
-                    (y - window.innerHeight / 2) / (window.innerHeight / 2),
-                    (x - window.innerWidth / 2) / (window.innerWidth / 2),
-                    0,
-                ],
+                rotation: [yPosition, xPosition, 0],
             })
         },
-        [set]
+        [set, setTopLid, setBottomLid]
     )
 
     return (
@@ -170,6 +203,23 @@ const Eye = () => {
                     side={THREE.DoubleSide}
                 />
             </mesh>
+
+            {/* eye lid */}
+            <a.mesh position={[0, 0, 0]} rotation={topLidRotation}>
+                <sphereBufferGeometry
+                    attach="geometry"
+                    args={[1, 32, 32, 1.6, 3]}
+                />
+                <meshLambertMaterial attach="material" color="#555" />
+            </a.mesh>
+
+            <a.mesh position={[0, 0, 0]} rotation={bottomLidRotation}>
+                <sphereBufferGeometry
+                    attach="geometry"
+                    args={[1, 32, 32, 1.6, 3]}
+                />
+                <meshLambertMaterial attach="material" color="#444" />
+            </a.mesh>
 
             <Effect />
         </Canvas>
