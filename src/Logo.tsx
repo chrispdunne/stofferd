@@ -43,6 +43,16 @@ const Grid = styled.div`
             opacity: 1;
         }
     }
+    /* 979px */
+    @media only screen and (max-width: 61.1875em) {
+        width: 3.0625rem;
+        line-height: 0;
+
+        div {
+            width: 0.4375rem;
+            height: 0.4375rem;
+        }
+    }
 `
 
 const Logo = ({ background = "#fff" }) => {

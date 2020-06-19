@@ -9,6 +9,13 @@ import firm from "../img/firm.png"
 
 const Container = styled.div`
     height: 100vh;
+    @media only screen and (max-width: 61.1875em) {
+        canvas {
+            height: 80vh !important;
+            width: 80vw !important;
+            margin: auto;
+        }
+    }
 `
 const Caption = styled.div`
     position: absolute;
@@ -16,6 +23,7 @@ const Caption = styled.div`
     transform: translateY(-50%);
     z-index: 1;
     padding-left: 3rem;
+    background: #000;
     h1 {
         color: #fff;
         font-size: 2rem;
@@ -50,9 +58,16 @@ const Caption = styled.div`
             }
         }
     }
+    @media only screen and (max-width: 61.1875em) {
+        background: transparent;
+        text-align: center;
+        top: 65vh;
+        width: 100%;
+        padding-left: 0;
+    }
 `
 
-const Home = ({ navRef }) => {
+const Home = () => {
     return (
         <>
             <Container>
@@ -63,12 +78,14 @@ const Home = ({ navRef }) => {
                 </Caption>
                 <Eye />
             </Container>
-            <div id="trigger" />
+            <div id="trigger" style={{ position: "absolute", top: "70vh" }} />
+
             <HomeSection
                 title="Nike"
                 subtitle="React, WordPress"
                 img={<img className="client-logo" src={nike} alt="Nike" />}
             />
+
             <HomeSection
                 color="#000"
                 title="Ernst &amp; Young"
@@ -81,28 +98,6 @@ const Home = ({ navRef }) => {
                     />
                 }
             />
-
-            <Controller>
-                <Scene
-                    // duration={200}
-                    classToggle="zap"
-                    triggerElement="#trigger"
-                    indicators={true}
-                >
-                    {(progress, event) => (
-                        <div className="test">
-                            Pin Test {event.type} {progress}
-                        </div>
-                    )}
-                </Scene>
-                {/* <Scene
-                    classToggle={[".test", "yellow"]}
-                    reverse={false}
-                    indicators={true}
-                >
-                    <div>Toggle other class</div>
-                </Scene> */}
-            </Controller>
         </>
     )
 }

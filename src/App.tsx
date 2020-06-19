@@ -1,11 +1,23 @@
 import React from "react"
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import styled from "styled-components"
+import classNames from "classnames"
 
 import Home from "./Pages/Home"
 import About from "./Pages/About"
 import Contact from "./Pages/Contact"
 import Logo from "./Logo"
+import Toggle from "./Components/Toggle"
+
+type Props = {
+    className?: string
+}
+
+type LogoToggleProps = {
+    className?: string
+    mobNavVis: boolean
+    setMobNavVis: (v: boolean) => void
+}
 
 const Nav = styled.div`
     /* position: fixed;
@@ -35,9 +47,6 @@ const Nav = styled.div`
         display: inline-block;
     }
     .logo {
-        /* flex: 0 0 calc(50% - 8rem); */
-        /* text-align: right; */
-        /* padding-top: 3rem; */
         position: fixed;
         z-index: 1;
         right: 0;
@@ -62,45 +71,139 @@ const Nav = styled.div`
             color: #000;
         }
     }
+    /* 979px */
+    @media only screen and (max-width: 61.1875em) {
+        ul.main {
+            right: -25rem;
+            transition: right 0.25s ease-in-out;
+            z-index: 4;
+            background: #000;
+            height: 20rem;
+            width: 12rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0;
+            border-radius: 100%;
+            padding: 0 8rem 0 0;
+            box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.5);
+        }
+        &.active {
+            ul.main {
+                right: -8rem;
+            }
+        }
+        .logo {
+            position: static;
+            padding: 2rem;
+        }
+    }
 `
 
+const LogoToggl = styled.div`
+    background: yellow;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    &.fixed {
+        position: fixed;
+        background-color: #000;
+        z-index: 4;
+        top: -10rem;
+        transition: top 0.3s ease-in-out;
+        &.visible {
+            top: 0rem;
+        }
+    }
+`
+
+const Menu = ({ className = "" }: Props) => {
+    return (
+        <ul className={className}>
+            <li id="about">
+                <Link to="/about">About</Link>
+            </li>
+
+            <li id="contact">
+                <Link to="/contact">Contact</Link>
+            </li>
+        </ul>
+    )
+}
+
+const LogoToggle = ({
+    className = "",
+    mobNavVis,
+    setMobNavVis,
+}: LogoToggleProps) => {
+    return (
+        <LogoToggl className={className}>
+            <Toggle mobNavVis={mobNavVis} setMobNavVis={setMobNavVis} />
+
+            <Link to="/" className="logo">
+                <Logo />
+            </Link>
+        </LogoToggl>
+    )
+}
 function App() {
-    const navRef = React.useRef(null)
+    let scrollTop = 0
+    const [scrollingUp, setScrollingUp] = React.useState(false)
+    const [mobNavVis, setMobNavVis] = React.useState(false)
+
+    const scrollingOn = React.useCallback(() => {
+        setScrollingUp(true)
+    }, [])
+    const scrollingOff = React.useCallback(() => {
+        setScrollingUp(false)
+    }, [])
+    const handleScroll = React.useCallback((e) => {
+        if (window.scrollY < scrollTop && window.scrollY > 300) {
+            requestAnimationFrame(scrollingOn)
+        } else {
+            requestAnimationFrame(scrollingOff)
+        }
+
+        scrollTop = window.scrollY
+    }, [])
+
+    React.useEffect(() => {
+        window.addEventListener("scroll", handleScroll)
+        return () => {
+            window.removeEventListener("scroll", handleScroll)
+        }
+    }, [])
+
     return (
         <Router>
             <div>
-                <Nav ref={navRef} id="nav">
-                    <Link to="/" className="logo">
-                        <Logo />
-                    </Link>
-                    <ul>
-                        <li id="about">
-                            <Link to="/about">About</Link>
-                        </li>
+                <Nav id="nav" className={mobNavVis ? "active" : ""}>
+                    <LogoToggle
+                        mobNavVis={mobNavVis}
+                        setMobNavVis={setMobNavVis}
+                    />
+                    <LogoToggle
+                        mobNavVis={mobNavVis}
+                        setMobNavVis={setMobNavVis}
+                        className={classNames("fixed", {
+                            visible: scrollingUp,
+                        })}
+                    />
 
-                        <li id="contact">
-                            <Link to="/contact">Contact</Link>
-                        </li>
-                    </ul>
-                    <div className="reverse" id="nav">
+                    <Menu className="main" />
+                    <div className="reverse desktop" id="nav">
                         <Link to="/" className="logo">
                             <Logo background="#000" />
                         </Link>
-                        <ul>
-                            <li id="about">
-                                <Link to="/about">About</Link>
-                            </li>
-
-                            <li id="contact">
-                                <Link to="/contact">Contact</Link>
-                            </li>
-                        </ul>
+                        <Menu className="desktop" />
                     </div>
                 </Nav>
 
                 <Switch>
                     <Route exact path="/">
-                        <Home navRef={navRef} />
+                        <Home />
                     </Route>
                     <Route path="/about">
                         <About />

@@ -23,6 +23,16 @@ const Section = styled.section`
         button {
             color: #000;
             border-color: #000;
+            &:before {
+                background-color: #000;
+            }
+            &:hover {
+                color: #fff;
+            }
+        }
+        .cover {
+            left: 50%;
+            right: 0;
         }
     }
     button {
@@ -31,6 +41,7 @@ const Section = styled.section`
     }
     .client-logo {
         position: absolute;
+        z-index: 2;
         top: 50%;
         left: 50%;
         transform: translateX(-50%) translateY(-50%);
@@ -40,6 +51,7 @@ const Section = styled.section`
         top: 50%;
         transform: translateY(-50%);
         left: 3rem;
+        z-index: 3;
     }
     h2,
     h3 {
@@ -52,6 +64,14 @@ const Section = styled.section`
     h3 {
         font-size: 1rem;
         font-weight: normal;
+    }
+    .cover {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 50%;
     }
 `
 const HomeSection = ({
@@ -69,10 +89,12 @@ const HomeSection = ({
             <div className="text">
                 <h2>{title}</h2>
                 <h3>{subtitle}</h3>
+                {children}
+
                 <button className="btn">Find out more</button>
             </div>
             {img}
-            {children}
+            <div style={{ backgroundColor: color }} className="cover desktop" />
         </Section>
     )
 }
