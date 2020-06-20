@@ -9,7 +9,7 @@ type Props = {
 }
 
 const Toggl = styled.button`
-    width: 2.5rem;
+    width: 6.5rem;
     appearance: none;
     background: transparent;
     /* position: absolute; */
@@ -18,13 +18,16 @@ const Toggl = styled.button`
     top: 2rem;
     border: 0;
     cursor: pointer;
-    padding: 0;
+    padding: 0 2rem;
     &:focus {
         outline: 0;
     }
     div {
         height: 0.35rem;
         margin-bottom: 0.35rem;
+        &:last-child {
+            margin: 0;
+        }
     }
 `
 
@@ -35,9 +38,7 @@ const Toggle = ({ className = "", mobNavVis, setMobNavVis }: Props) => {
     return (
         <Toggl className={classNames("mobile", className)} onClick={onClick}>
             <div style={{ background: "#fff" }} />
-
             <div style={{ background: "#fff" }} />
-
             <div style={{ background: "#fff" }} />
         </Toggl>
     )

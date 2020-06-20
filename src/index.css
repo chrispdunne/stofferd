@@ -27,6 +27,10 @@
   /* Legacy iOS */
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: 'G', sans-serif;

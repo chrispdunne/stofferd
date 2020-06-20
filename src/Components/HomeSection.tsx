@@ -51,7 +51,7 @@ const Section = styled.section`
         top: 50%;
         transform: translateY(-50%);
         left: 3rem;
-        z-index: 3;
+        z-index: 4;
     }
     h2,
     h3 {
@@ -72,6 +72,21 @@ const Section = styled.section`
         bottom: 0;
         left: 0;
         right: 50%;
+    }
+
+    /* 979px */
+    @media only screen and (max-width: 61.1875em) {
+        .client-logo {
+            top: 33%;
+        }
+        .text,
+        &.white .text {
+            top: 66%;
+            text-align: center;
+            width: 100%;
+            right: initial;
+            left: initial;
+        }
     }
 `
 const HomeSection = ({
