@@ -2,13 +2,13 @@ import React from "react"
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import styled from "styled-components"
 import classNames from "classnames"
-
-import Home from "./Pages/Home"
-import About from "./Pages/About"
-import Contact from "./Pages/Contact"
-import Logo from "./Logo"
-import Toggle from "./Components/Toggle"
-import Pixelation from "./Components/Pixelation"
+import "../index.css"
+import Home from "./Home"
+import About from "./About"
+import Contact from "./Contact"
+import Logo from "../Logo"
+import Toggle from "../components/Toggle"
+// import Pixelation from "../components/Pixelation"
 
 type Props = {
     className?: string
@@ -214,7 +214,7 @@ function App() {
                     </Route>
                 </Switch>
             </div>
-            <Pixelation />
+            {/* <Pixelation /> */}
         </Router>
     )
 }
