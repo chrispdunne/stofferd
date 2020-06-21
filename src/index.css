@@ -27,6 +27,16 @@
   /* Legacy iOS */
 }
 
+@keyframes pixelColor {
+  from {
+    background-color: black;
+  }
+
+  to {
+    background-color: white;
+  }
+}
+
 html {
   overflow-x: hidden;
 }

@@ -8,6 +8,7 @@ import About from "./Pages/About"
 import Contact from "./Pages/Contact"
 import Logo from "./Logo"
 import Toggle from "./Components/Toggle"
+import Pixelation from "./Components/Pixelation"
 
 type Props = {
     className?: string
@@ -213,6 +214,7 @@ function App() {
                     </Route>
                 </Switch>
             </div>
+            <Pixelation />
         </Router>
     )
 }
