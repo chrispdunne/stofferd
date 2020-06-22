@@ -118,6 +118,8 @@ const Eye = () => {
 
     const onMouseMove = React.useCallback(
         ({ clientX: x, clientY: y }) => {
+            if (!window) return
+
             const yPosition =
                 (y + window.scrollY - window.innerHeight / 2) /
                 (window.innerHeight / 2)

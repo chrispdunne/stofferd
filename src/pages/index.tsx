@@ -1,222 +1,114 @@
 import React from "react"
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import styled from "styled-components"
-import classNames from "classnames"
-import "../index.css"
-import Home from "./Home"
-import About from "./About"
-import Contact from "./Contact"
-import Logo from "../Logo"
-import Toggle from "../components/Toggle"
-// import Pixelation from "../components/Pixelation"
+import HomeSection from "../components/HomeSection"
+import nike from "../img/nike.png"
+import ey from "../img/ey.png"
+// import firm from "../img/firm.png"
+import Loadable from "react-loadable"
+import Nav from "../components/Nav"
 
-type Props = {
-    className?: string
-}
+// a component that will be defered to be rendered only on client side.
+const loader = () => <div>Loading threejs...</div>
+const LoadableEye = Loadable({
+    loader: () => import("../components/Eye.js"), // imports the component with the three.js and allows use of it safely
+    loading: loader,
+})
 
-type LogoToggleProps = {
-    className?: string
-    mobNavVis: boolean
-    setMobNavVis: (v: boolean) => void
-}
-
-const Nav = styled.div`
-    /* position: fixed;
-    right: 0;
-    z-index: 1; */
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* height: 100vh; */
-    ul {
-        position: fixed;
-        z-index: 1;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-    li {
-        list-style-type: none;
-        text-align: right;
-    }
-    a {
-        color: #fff;
-        font-weight: bold;
-        text-transform: uppercase;
-        text-decoration: none;
-        font-size: 20px;
-        padding: 1rem 3rem;
-        display: inline-block;
-    }
-    .logo {
-        position: fixed;
-        z-index: 1;
-        right: 0;
-        top: 2rem;
-    }
-    .logo__img {
-        max-width: 6rem;
-    }
-    .reverse {
-        .logo,
-        ul {
-            left: 0;
-            right: initial;
-        }
-        ul {
-            padding: 0;
-        }
-        li {
-            text-align: left;
-        }
-        a {
-            color: #000;
-        }
-    }
-    /* 979px */
+const Container = styled.div`
+    height: 100vh;
     @media only screen and (max-width: 61.1875em) {
-        ul.main {
-            right: -25rem;
-            transition: right 0.25s ease-in-out;
-            z-index: 4;
-            background: #000;
-            height: 20rem;
-            width: 12rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            margin: 0;
-            border-radius: 100%;
-            padding: 0 8rem 0 0;
-            box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.5);
+        canvas {
+            height: 80vh !important;
+            width: 80vw !important;
+            margin: auto;
         }
-        &.active {
-            ul.main {
-                right: -8rem;
+    }
+`
+const Caption = styled.div`
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    padding-left: 3rem;
+    background: #000;
+    h1 {
+        color: #fff;
+        font-size: 2rem;
+    }
+    h3 {
+        color: #fff;
+        font-weight: normal;
+        font-size: 1rem;
+        margin-left: 0.1rem;
+    }
+    .btn {
+        margin-top: 0.5rem;
+        margin-left: 0.2rem;
+    }
+    #pinContainer {
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        .panel {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 0rem;
+            /* text-align: right; */
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 1.5rem 1.2rem 1.5rem;
+            margin-right: 2rem;
+            span {
+                color: #fff;
+                display: block;
+                max-width: 12rem;
             }
         }
-        .logo {
-            position: static;
-            padding: 2rem;
-        }
+    }
+    @media only screen and (max-width: 61.1875em) {
+        background: transparent;
+        text-align: center;
+        top: 65vh;
+        width: 100%;
+        padding-left: 0;
     }
 `
 
-const LogoToggl = styled.div`
-    background: yellow;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    &.fixed {
-        position: fixed;
-        background-color: #000;
-        z-index: 4;
-        top: -10rem;
-        transition: top 0.3s ease-in-out;
-        &.visible {
-            top: 0rem;
-        }
-    }
-`
-
-const Menu = ({ className = "" }: Props) => {
+const Home = () => {
     return (
-        <ul className={className}>
-            <li id="about">
-                <Link to="/about">About</Link>
-            </li>
+        <>
+            <Nav />
+            <Container>
+                <Caption>
+                    <h3>REACT, WORDPRESS, TYPESCRIPT</h3>
+                    <h1>DEVELOPER</h1>
+                    <button className="btn">FIND OUT MORE</button>
+                </Caption>
+                {/* <Eye /> */}
+                <LoadableEye />
+            </Container>
+            <div id="trigger" style={{ position: "absolute", top: "70vh" }} />
 
-            <li id="contact">
-                <Link to="/contact">Contact</Link>
-            </li>
-        </ul>
-    )
-}
+            <HomeSection
+                title="Nike"
+                subtitle="React, WordPress"
+                img={<img className="client-logo" src={nike} alt="Nike" />}
+            />
 
-const LogoToggle = ({
-    className = "",
-    mobNavVis,
-    setMobNavVis,
-}: LogoToggleProps) => {
-    return (
-        <LogoToggl className={className}>
-            <Toggle mobNavVis={mobNavVis} setMobNavVis={setMobNavVis} />
-
-            <Link to="/" className="logo">
-                <Logo />
-            </Link>
-        </LogoToggl>
-    )
-}
-function App() {
-    let scrollTop = 0
-    const [scrollingUp, setScrollingUp] = React.useState(false)
-    const [mobNavVis, setMobNavVis] = React.useState(false)
-
-    const scrollingOn = React.useCallback(() => {
-        setScrollingUp(true)
-    }, [])
-    const scrollingOff = React.useCallback(() => {
-        setScrollingUp(false)
-    }, [])
-    const handleScroll = React.useCallback((e) => {
-        if (window.scrollY < scrollTop && window.scrollY > 300) {
-            requestAnimationFrame(scrollingOn)
-        } else {
-            requestAnimationFrame(scrollingOff)
-        }
-
-        scrollTop = window.scrollY
-    }, [])
-
-    React.useEffect(() => {
-        window.addEventListener("scroll", handleScroll)
-        return () => {
-            window.removeEventListener("scroll", handleScroll)
-        }
-    }, [])
-
-    return (
-        <Router>
-            <div>
-                <Nav id="nav" className={mobNavVis ? "active" : ""}>
-                    <LogoToggle
-                        mobNavVis={mobNavVis}
-                        setMobNavVis={setMobNavVis}
+            <HomeSection
+                color="#000"
+                title="Ernst &amp; Young"
+                subtitle="React, TypeScript, GraphQl"
+                img={
+                    <img
+                        className="client-logo"
+                        src={ey}
+                        alt="Ernst &amp; Young"
                     />
-                    <LogoToggle
-                        mobNavVis={mobNavVis}
-                        setMobNavVis={setMobNavVis}
-                        className={classNames("fixed", {
-                            visible: scrollingUp,
-                        })}
-                    />
-
-                    <Menu className="main" />
-                    <div className="reverse desktop" id="nav">
-                        <Link to="/" className="logo">
-                            <Logo background="#000" />
-                        </Link>
-                        <Menu className="desktop" />
-                    </div>
-                </Nav>
-
-                <Switch>
-                    <Route exact path="/">
-                        <Home />
-                    </Route>
-                    <Route path="/about">
-                        <About />
-                    </Route>
-                    <Route path="/contact">
-                        <Contact />
-                    </Route>
-                </Switch>
-            </div>
-            {/* <Pixelation /> */}
-        </Router>
+                }
+            />
+        </>
     )
 }
 
-export default App
+export default Home
