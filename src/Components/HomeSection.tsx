@@ -1,18 +1,23 @@
 import React from "react"
 import styled from "styled-components"
+import classNames from "classnames"
 
 type Props = {
+    className?: string
     title: string
     subtitle?: string
     color?: string
     children?: React.ReactNode
     img?: React.ReactNode
+    button?: React.ReactNode
 }
 
 const Section = styled.section`
     height: 100vh;
     position: relative;
+    color: #fff;
     &.white {
+        color: #000;
         .text {
             right: 3rem;
             left: initial;
@@ -60,10 +65,14 @@ const Section = styled.section`
     }
     h2 {
         font-size: 2rem;
+        margin: 0.75rem 0 0.3rem;
+        position: relative;
+        left: -0.1rem;
     }
     h3 {
         font-size: 1rem;
         font-weight: normal;
+        margin: 0 0 0.4rem;
     }
     .cover {
         position: absolute;
@@ -72,6 +81,37 @@ const Section = styled.section`
         bottom: 0;
         left: 0;
         right: 50%;
+    }
+    label {
+        display: block;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        margin: 2rem 0;
+        font-weight: bold;
+        span {
+            width: 3rem;
+            display: block;
+        }
+        input,
+        textarea {
+            margin: 0;
+            font-family: "g", sans-serif;
+            font-size: 1.5rem;
+            background: transparent;
+            border: 0;
+            border-bottom: 1px solid #fff;
+            color: #fff;
+            position: relative;
+            top: -0.3rem;
+            padding: 0.75rem 0;
+            width: 20rem;
+            &:focus {
+                outline: 0;
+            }
+        }
+        textarea {
+            height: 10rem;
+        }
     }
 
     /* 979px */
@@ -92,21 +132,22 @@ const Section = styled.section`
 const HomeSection = ({
     color = "#fff",
     children,
+    className = "",
     img,
     title,
     subtitle,
+    button,
 }: Props) => {
     return (
         <Section
-            className={color === "#fff" ? "white" : ""}
+            className={classNames({ white: color === "#fff" }, className)}
             style={{ backgroundColor: color }}
         >
             <div className="text">
-                <h2>{title}</h2>
                 <h3>{subtitle}</h3>
+                <h2>{title}</h2>
                 {children}
-
-                <button className="btn">Find out more</button>
+                {button}
             </div>
             {img}
             <div style={{ backgroundColor: color }} className="cover desktop" />

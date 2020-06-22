@@ -36,6 +36,7 @@ const Grid = styled.div`
         opacity: 0;
     }
     &:hover {
+        background: #000;
         .fill {
             opacity: 0;
         }

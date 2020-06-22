@@ -3,7 +3,7 @@ import styled from "styled-components"
 import HomeSection from "../components/HomeSection"
 import nike from "../img/nike.png"
 import ey from "../img/ey.png"
-// import firm from "../img/firm.png"
+import firm from "../img/firm.png"
 import Loadable from "react-loadable"
 import Nav from "../components/Nav"
 
@@ -107,6 +107,32 @@ const Home = () => {
                     />
                 }
             />
+
+            <HomeSection
+                title="The Firm"
+                subtitle="React, WordPress"
+                img={<img className="client-logo" src={firm} alt="Nike" />}
+            />
+
+            <HomeSection color="#000" title="Contact">
+                <form name="contact" method="POST" data-netlify="true">
+                    <label>
+                        <span>Name:</span>
+                        <input />
+                    </label>
+                    <label>
+                        <span>Email:</span>
+                        <input />
+                    </label>
+                    <label>
+                        <span>Message:</span>
+                        <textarea />
+                    </label>
+                    <button type="submit" className="btn">
+                        Send message
+                    </button>
+                </form>
+            </HomeSection>
         </>
     )
 }

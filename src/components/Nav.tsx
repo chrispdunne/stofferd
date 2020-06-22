@@ -50,6 +50,9 @@ const StyledNav = styled.div`
         max-width: 6rem;
     }
     .reverse {
+        .logo:hover > div {
+            background: #fff;
+        }
         .logo,
         ul {
             left: 0;
