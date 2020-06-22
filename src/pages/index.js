@@ -1,69 +1,140 @@
 import React from "react"
-import { Link } from "gatsby"
 import styled from "styled-components"
+import HomeSection from "../components/HomeSection"
+import nike from "../img/nike.png"
+import ey from "../img/ey.png"
+import firm from "../img/firm.png"
+import Loadable from "react-loadable"
+import Nav from "../components/Nav"
 
-import Layout from "../components/layout"
-// import Image from "../components/image"
-import SEO from "../components/seo"
-import Svg from "../components/Svg"
-import StyledEarth from "../components/StyledEarth"
-import StyledMap from "../components/StyledMap"
+// a component that will be defered to be rendered only on client side.
+const loader = () => <div>Loading threejs...</div>
+const LoadableEye = Loadable({
+    loader: () => import("../components/Eye"), // imports the component with the three.js and allows use of it safely
+    loading: loader,
+})
 
-const StyledSection = styled.div`
-  height: 90vh;
-  position: relative;
-  /* &.one {
-    background: #ee4354;
-  }*/
-  &.two {
-    position: absolute;
-    z-index: 1;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-  }
-  /* &.three {
-    background: #ee4354;
-  } */
-  .textured,
-  .map {
+const Container = styled.div`
     height: 100vh;
-  }
-  &.sweet-ovelay {
-    background-image: linear-gradient(
-      rgba(220, 0, 0, 0.5),
-      rgba(200, 150, 0, 0.5)
-    );
-    background-attachment: fixed;
+    @media only screen and (max-width: 61.1875em) {
+        canvas {
+            height: 80vh !important;
+            width: 80vw !important;
+            margin: auto;
+        }
+    }
+`
+const Caption = styled.div`
     position: absolute;
-    z-index: 2;
-    height: 200vh;
-    width: 100%;
-  }
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    padding-left: 3rem;
+    background: #000;
+    h1 {
+        color: #fff;
+        font-size: 2rem;
+    }
+    h3 {
+        color: #fff;
+        font-weight: normal;
+        font-size: 1rem;
+        margin-left: 0.1rem;
+    }
+    .btn {
+        margin-top: 0.5rem;
+        margin-left: 0.2rem;
+    }
+    #pinContainer {
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        .panel {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 0rem;
+            /* text-align: right; */
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 1.5rem 1.2rem 1.5rem;
+            margin-right: 2rem;
+            span {
+                color: #fff;
+                display: block;
+                max-width: 12rem;
+            }
+        }
+    }
+    @media only screen and (max-width: 61.1875em) {
+        background: transparent;
+        text-align: center;
+        top: 65vh;
+        width: 100%;
+        padding-left: 0;
+    }
 `
 
-const IndexPage = () => (
-  <Layout>
-    <StyledSection className="sweet-ovelay"></StyledSection>
+const Home = () => {
+    return (
+        <>
+            <Nav />
+            <Container>
+                <Caption>
+                    <h3>REACT, WORDPRESS, TYPESCRIPT</h3>
+                    <h1>DEVELOPER</h1>
+                    <button className="btn">FIND OUT MORE</button>
+                </Caption>
+                {/* <Eye /> */}
+                <LoadableEye />
+            </Container>
+            <div id="trigger" style={{ position: "absolute", top: "70vh" }} />
 
-    <SEO title="Home" />
+            <HomeSection
+                title="Nike"
+                subtitle="React, WordPress"
+                img={<img className="client-logo" src={nike} alt="Nike" />}
+            />
 
-    {/* <StyledSection className="one"></StyledSection> */}
+            <HomeSection
+                color="#000"
+                title="Ernst &amp; Young"
+                subtitle="React, TypeScript, GraphQl"
+                img={
+                    <img
+                        className="client-logo"
+                        src={ey}
+                        alt="Ernst &amp; Young"
+                    />
+                }
+            />
 
-    <StyledSection className="three">
-      <StyledMap className="map"></StyledMap>
-    </StyledSection>
+            <HomeSection
+                title="The Firm"
+                subtitle="React, WordPress"
+                img={<img className="client-logo" src={firm} alt="Nike" />}
+            />
 
-    <StyledSection className="two">
-      <Svg />
-    </StyledSection>
+            <HomeSection color="#000" title="Contact">
+                <form name="contact" method="POST" data-netlify="true">
+                    <label>
+                        <span>Name:</span>
+                        <input />
+                    </label>
+                    <label>
+                        <span>Email:</span>
+                        <input />
+                    </label>
+                    <label>
+                        <span>Message:</span>
+                        <textarea />
+                    </label>
+                    <button type="submit" className="btn">
+                        Send message
+                    </button>
+                </form>
+            </HomeSection>
+        </>
+    )
+}
 
-    <StyledSection>
-      <StyledEarth className="textured"> </StyledEarth>
-    </StyledSection>
-
-    {/* <Link to="/page-2/">Go to page 2</Link> */}
-  </Layout>
-)
-
-export default IndexPage
+export default Home
