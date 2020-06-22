@@ -10,7 +10,7 @@ import Nav from "../components/Nav"
 // a component that will be defered to be rendered only on client side.
 const loader = () => <div>Loading threejs...</div>
 const LoadableEye = Loadable({
-    loader: () => import("../components/Eye.js"), // imports the component with the three.js and allows use of it safely
+    loader: () => import("../components/Eye"), // imports the component with the three.js and allows use of it safely
     loading: loader,
 })
 
