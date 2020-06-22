@@ -6,7 +6,7 @@ import classNames from "classnames"
 import "../index.css"
 
 import Logo from "../Logo.tsx"
-import Toggle from "./Toggle.tsx"
+import Toggle from "../Toggle.tsx"
 // import Pixelation from "../components/Pixelation"
 
 type Props = {
