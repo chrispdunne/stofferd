@@ -1,5 +1,5 @@
 import React from "react"
-import Nav from "../components/Nav"
+import Nav from "../components/Nav.tsx"
 import styled from "styled-components"
 
 const FourOhFour = styled.div`
