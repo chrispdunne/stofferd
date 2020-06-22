@@ -5,8 +5,8 @@ import styled from "styled-components"
 import classNames from "classnames"
 import "../index.css"
 
-import Logo from "../Logo.tsx"
-import Toggle from "Toggle.tsx"
+import Logo from "../Logo"
+import Toggle from "./Toggle"
 // import Pixelation from "../components/Pixelation"
 
 type Props = {
