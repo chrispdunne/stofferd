@@ -8,7 +8,7 @@ const FourOhFour = styled.div`
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
 `
-const Contact = () => {
+const NotFound = () => {
     return (
         <div>
             <Nav />
@@ -17,4 +17,4 @@ const Contact = () => {
     )
 }
 
-export default Contact
+export default NotFound
