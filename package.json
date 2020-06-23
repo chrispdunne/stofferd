@@ -51,6 +51,8 @@
   "devDependencies": {
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^5.1.0",
+    "babel-plugin-styled-components": "^1.10.7",
+    "gatsby-plugin-styled-components": "^3.3.5",
     "gatsby-plugin-typescript": "^2.4.6"
   }
 }
