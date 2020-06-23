@@ -98,7 +98,6 @@ const StyledNav = styled.div`
 `
 
 const LogoToggl = styled.div`
-    background: yellow;
     display: flex;
     width: 100%;
     justify-content: space-between;

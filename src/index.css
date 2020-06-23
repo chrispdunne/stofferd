@@ -10,6 +10,7 @@
     /* Safari, Android, iOS */
     url('./fonts/GothamBook.svg') format('svg');
   /* Legacy iOS */
+  font-display: swap;
 }
 
 @font-face {
@@ -25,6 +26,7 @@
     /* Safari, Android, iOS */
     url('./fonts/GothamBold.svg') format('svg');
   /* Legacy iOS */
+  font-display: swap;
 }
 
 @keyframes pixelColor {
@@ -36,6 +38,17 @@
     background-color: white;
   }
 }
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
 
 html {
   overflow-x: hidden;
