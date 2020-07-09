@@ -8,8 +8,12 @@ import "../index.css"
 import Logo from "../Logo"
 import Toggle from "./Toggle"
 // import Pixelation from "../components/Pixelation"
+import pixelate from "../img/pixelate.gif"
 
 type Props = {
+    double?: boolean
+}
+type MenuProps = {
     className?: string
 }
 
@@ -22,7 +26,7 @@ type LogoToggleProps = {
 const StyledNav = styled.div`
     ul {
         position: fixed;
-        z-index: 1;
+        z-index: 2;
         right: 0;
         top: 50%;
         transform: translateY(-50%);
@@ -39,6 +43,22 @@ const StyledNav = styled.div`
         font-size: 20px;
         padding: 1rem 3rem;
         display: inline-block;
+    }
+    .nav-link {
+        transition: transform 0.25s ease-in-out;
+
+        span {
+            background-image: url(${pixelate});
+            background-size: 0;
+            background-repeat: repeat-x;
+            background-position: center;
+        }
+        &:hover {
+            /* transform: scale(1.2); */
+            span {
+                background-size: 29px 14px;
+            }
+        }
     }
     .logo {
         position: fixed;
@@ -115,15 +135,19 @@ const LogoToggl = styled.div`
     }
 `
 
-const Menu = ({ className = "" }: Props) => {
+const Menu = ({ className = "" }: MenuProps) => {
     return (
         <ul className={className}>
-            <li id="about">
-                <Link to="/about">About</Link>
+            <li id="about" className="nav-link">
+                <Link to="/about">
+                    <span>About</span>
+                </Link>
             </li>
 
-            <li id="contact">
-                <Link to="/contact">Contact</Link>
+            <li id="contact" className="nav-link">
+                <Link to="/contact">
+                    <span>Contact</span>
+                </Link>
             </li>
         </ul>
     )
@@ -144,23 +168,16 @@ const LogoToggle = ({
         </LogoToggl>
     )
 }
-function Nav() {
+function Nav({ double = false }: Props) {
     let scrollTop = 0
     const [scrollingUp, setScrollingUp] = React.useState(false)
     const [mobNavVis, setMobNavVis] = React.useState(false)
-
-    const scrollingOn = React.useCallback(() => {
-        setScrollingUp(true)
-    }, [])
-    const scrollingOff = React.useCallback(() => {
-        setScrollingUp(false)
-    }, [])
     const handleScroll = React.useCallback((e) => {
         if (!window) return
         if (window.scrollY < scrollTop && window.scrollY > 300) {
-            requestAnimationFrame(scrollingOn)
+            requestAnimationFrame(() => setScrollingUp(true))
         } else {
-            requestAnimationFrame(scrollingOff)
+            requestAnimationFrame(() => setScrollingUp(false))
         }
 
         scrollTop = window.scrollY
@@ -185,12 +202,14 @@ function Nav() {
             />
 
             <Menu className="main" />
-            <div className="reverse desktop" id="nav">
-                <Link to="/" className="logo">
-                    <Logo background="#000" />
-                </Link>
-                <Menu className="desktop" />
-            </div>
+            {double && (
+                <div className="reverse desktop" id="nav">
+                    <Link to="/" className="logo">
+                        <Logo background="#000" />
+                    </Link>
+                    <Menu className="desktop" />
+                </div>
+            )}
         </StyledNav>
     )
 }

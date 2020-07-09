@@ -89,6 +89,11 @@ function Effect() {
 }
 
 const Eye = () => {
+    const lidOpen = [5, 0, 1.56]
+    const bottomLidClosed = [3.15, 0, 1.56]
+    const topLidClosed = [6.175, 0, 1.56]
+    const [pupilExpanded, setPupilExpanded] = React.useState(false)
+
     const [{ rotation }, set] = useSpring(() => ({
         config: {
             mass: 1,
@@ -116,6 +121,31 @@ const Eye = () => {
         rotation: [5, 0, 1.56],
     }))
 
+    const [{ scale }, setPupilScale] = useSpring(() => ({
+        config: {
+            mass: 1,
+            tension: 50,
+            friction: 26,
+        },
+        scale: [1, 1, 1],
+    }))
+
+    const onClick = React.useCallback(() => {
+        setBottomLid({ rotation: lidOpen })
+        setTopLid({ rotation: lidOpen })
+        setPupilScale({
+            scale: pupilExpanded ? [0.5, 0.5, 0.5] : [1.5, 1.5, 1.5],
+        })
+        setPupilExpanded(!pupilExpanded)
+    }, [
+        lidOpen,
+        setBottomLid,
+        setPupilScale,
+        setTopLid,
+        setPupilExpanded,
+        pupilExpanded,
+    ])
+
     const onMouseMove = React.useCallback(
         ({ clientX: x, clientY: y }) => {
             if (!window) return
@@ -132,18 +162,18 @@ const Eye = () => {
                 xPosition < 0.1 &&
                 xPosition > -0.1
             ) {
-                setBottomLid({ rotation: [3.15, 0, 1.56] })
-                setTopLid({ rotation: [6.175, 0, 1.56] })
+                setBottomLid({ rotation: bottomLidClosed })
+                setTopLid({ rotation: topLidClosed })
             } else {
-                setBottomLid({ rotation: [5, 0, 1.56] })
-                setTopLid({ rotation: [5, 0, 1.56] })
+                setBottomLid({ rotation: lidOpen })
+                setTopLid({ rotation: lidOpen })
             }
 
             set({
                 rotation: [yPosition, xPosition, 0],
             })
         },
-        [set, setTopLid, setBottomLid]
+        [set, setTopLid, setBottomLid, bottomLidClosed, topLidClosed, lidOpen]
     )
 
     return (
@@ -154,6 +184,7 @@ const Eye = () => {
                 position: [0, 0, 5],
             }}
             onMouseMove={onMouseMove}
+            onClick={onClick}
             style={{ background: "#000" }}
         >
             <ambientLight intensity={0.8} color="#fff" />
@@ -186,14 +217,18 @@ const Eye = () => {
                 </mesh>
 
                 {/* pupil */}
-                <mesh position={[0, 0, 0.92]} rotation={[0, 0, 0]}>
+                <a.mesh
+                    scale={scale}
+                    position={[0, 0, 0.92]}
+                    rotation={[0, 0, 0]}
+                >
                     <circleBufferGeometry attach="geometry" args={[0.2, 32]} />
                     <meshStandardMaterial
                         attach="material"
                         color="#000"
                         side={THREE.DoubleSide}
                     />
-                </mesh>
+                </a.mesh>
             </a.group>
 
             {/* eye glow */}

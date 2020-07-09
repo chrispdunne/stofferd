@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import classNames from "classnames"
+import { Link } from "gatsby"
 
 type Props = {
     className?: string
@@ -9,13 +10,15 @@ type Props = {
     color?: string
     children?: React.ReactNode
     img?: React.ReactNode
-    button?: React.ReactNode
+    btnLink?: string
 }
 
 const Section = styled.section`
     height: 100vh;
     position: relative;
     color: #fff;
+    scroll-snap-align: start;
+
     &.white {
         color: #000;
         .text {
@@ -25,15 +28,18 @@ const Section = styled.section`
         }
         h2,
         h3,
-        button {
+        button,
+        .btn a {
             color: #000;
             border-color: #000;
             &:before {
                 background-color: #000;
             }
-            &:hover {
-                color: #fff;
-            }
+        }
+        button:hover,
+        button:hover a,
+        .btn a:hover {
+            color: #fff;
         }
         .cover {
             left: 50%;
@@ -46,7 +52,7 @@ const Section = styled.section`
     }
     .client-logo {
         position: absolute;
-        z-index: 2;
+        z-index: 5;
         top: 50%;
         left: 50%;
         transform: translateX(-50%) translateY(-50%);
@@ -56,7 +62,7 @@ const Section = styled.section`
         top: 50%;
         transform: translateY(-50%);
         left: 3rem;
-        z-index: 4;
+        z-index: 5;
     }
     h2,
     h3 {
@@ -76,7 +82,7 @@ const Section = styled.section`
     }
     .cover {
         position: absolute;
-        z-index: 1;
+        z-index: 4;
         top: 0;
         bottom: 0;
         left: 0;
@@ -136,7 +142,7 @@ const HomeSection = ({
     img,
     title,
     subtitle,
-    button,
+    btnLink,
 }: Props) => {
     return (
         <Section
@@ -147,7 +153,11 @@ const HomeSection = ({
                 <h3>{subtitle}</h3>
                 <h2>{title}</h2>
                 {children}
-                {button}
+                {btnLink && (
+                    <Link to={btnLink}>
+                        <button className="btn">Find out more</button>
+                    </Link>
+                )}
             </div>
             {img}
             <div style={{ backgroundColor: color }} className="cover desktop" />

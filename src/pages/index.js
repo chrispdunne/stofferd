@@ -7,6 +7,7 @@ import firm from "../img/firm.png"
 import Loadable from "react-loadable"
 import Nav from "../components/Nav"
 import placeholder from "../img/placeholder-eye-1.jpg"
+import { Link } from "gatsby"
 
 const LoadingDiv = styled.div`
     width: 100vw;
@@ -91,8 +92,10 @@ const LoadableEye = Loadable({
     loading: loader,
 })
 
-const Container = styled.div`
+const Container = styled.section`
     height: 100vh;
+    scroll-snap-align: start;
+    position: relative;
     @media only screen and (max-width: 61.1875em) {
         canvas {
             height: 80vh !important;
@@ -105,7 +108,7 @@ const Caption = styled.div`
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 1;
+    z-index: 2;
     padding-left: 3rem;
     background: #000;
     h1 {
@@ -151,64 +154,99 @@ const Caption = styled.div`
     }
 `
 
+const SectionContainer = styled.div`
+    height: 100vh;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+`
+
 const Home = () => {
+    // const onScroll = React.useCallback((e) => {
+    //     requestAnimationFrame(() => {
+    //         const currentSection = Math.ceil(
+    //             window.scrollY / window.innerHeight
+    //         )
+    //         const progress =
+    //             (window.scrollY - currentSection * window.innerHeight) /
+    //                 window.innerHeight +
+    //             1
+    //         console.log({ currentSection })
+    //         console.log({ progress })
+
+    //         // console.log({ e })
+    //         // console.log(window.scrollY)
+    //         // console.log(window.innerHeight)
+    //     })
+    // }, [])
+    // React.useEffect(() => {
+    //     window.addEventListener("scroll", onScroll)
+    //     return () => {
+    //         window.removeEventListener("scroll", onScroll)
+    //     }
+    // }, [onScroll])
     return (
         <>
-            <Nav />
-            <Container>
-                <Caption>
-                    <h3>REACT, WORDPRESS, TYPESCRIPT</h3>
-                    <h1>DEVELOPER</h1>
-                    <button className="btn">FIND OUT MORE</button>
-                </Caption>
-                <LoadableEye />
-            </Container>
-            <div id="trigger" style={{ position: "absolute", top: "70vh" }} />
+            <Nav double />
+            <SectionContainer>
+                <Container>
+                    <Caption>
+                        <h3>REACT, WORDPRESS, TYPESCRIPT</h3>
+                        <h1>DEVELOPER</h1>
+                        <Link to="/about">
+                            <button className="btn">FIND OUT MORE</button>
+                        </Link>
+                    </Caption>
+                    <LoadableEye />
+                </Container>
 
-            <HomeSection
-                title="Nike"
-                subtitle="React, WordPress"
-                img={<img className="client-logo" src={nike} alt="Nike" />}
-            />
+                <HomeSection
+                    btnLink="work/nike"
+                    title="Nike"
+                    subtitle="React, WordPress"
+                    img={<img className="client-logo" src={nike} alt="Nike" />}
+                />
 
-            <HomeSection
-                color="#000"
-                title="Ernst &amp; Young"
-                subtitle="React, TypeScript, GraphQl"
-                img={
-                    <img
-                        className="client-logo"
-                        src={ey}
-                        alt="Ernst &amp; Young"
-                    />
-                }
-            />
+                <HomeSection
+                    btnLink="/work/ey"
+                    color="#000"
+                    title="Ernst &amp; Young"
+                    subtitle="React, TypeScript, GraphQl"
+                    img={
+                        <img
+                            className="client-logo"
+                            src={ey}
+                            alt="Ernst &amp; Young"
+                        />
+                    }
+                />
 
-            <HomeSection
-                title="The Firm"
-                subtitle="React, WordPress"
-                img={<img className="client-logo" src={firm} alt="Nike" />}
-            />
+                <HomeSection
+                    btnLink="/work/firm"
+                    title="The Firm"
+                    subtitle="React, WordPress"
+                    img={<img className="client-logo" src={firm} alt="Nike" />}
+                />
 
-            <HomeSection color="#000" title="Contact">
-                <form name="contact" method="POST" data-netlify="true">
-                    <label>
-                        <span>Name:</span>
-                        <input />
-                    </label>
-                    <label>
-                        <span>Email:</span>
-                        <input />
-                    </label>
-                    <label>
-                        <span>Message:</span>
-                        <textarea />
-                    </label>
-                    <button type="submit" className="btn">
-                        Send message
-                    </button>
-                </form>
-            </HomeSection>
+                <HomeSection color="#000" title="Contact">
+                    <form name="contact" method="POST" data-netlify="true">
+                        <label>
+                            <span>Name:</span>
+                            <input />
+                        </label>
+                        <label>
+                            <span>Email:</span>
+                            <input />
+                        </label>
+                        <label>
+                            <span>Message:</span>
+                            <textarea />
+                        </label>
+                        <button type="submit" className="btn">
+                            Send message
+                        </button>
+                    </form>
+                </HomeSection>
+            </SectionContainer>
         </>
     )
 }

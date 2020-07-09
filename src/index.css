@@ -82,7 +82,15 @@ code {
   text-transform: uppercase;
 }
 
-.btn:hover {
+.btn a,
+.btn a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn:hover,
+.btn:hover a,
+.btn a:hover {
   color: #000;
 }
 
