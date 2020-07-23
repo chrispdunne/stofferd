@@ -119,7 +119,7 @@ const Nike = () => {
     const tl = gsap.timeline({
         scrollTrigger: {
             trigger: ".trigger",
-            start: "top 1px", // trg | scrl
+            start: "0px 1px", // trg | scrl
             end: "bottom bottom", //trg | scrl
             scrub: true,
             markers: true,
@@ -150,9 +150,12 @@ const Nike = () => {
         imageEls.forEach((img, i) => {
             // setup
             const spot = spotEls[i]
-            i === 0
-                ? tl.set(img, { scale: 1, opacity: 1, x: "-100%" }, 0)
-                : tl.set(spot, { css: { opacity: 0 } }, 0)
+            if (i === 0) {
+                tl.set(img, { scale: 1, opacity: 1, x: "-100%" }, 0)
+            } else {
+                tl.set(spot, { css: { opacity: 0 } }, 0)
+            }
+
             // animate in
             if (i !== 0) {
                 tl.to(
@@ -190,7 +193,6 @@ const Nike = () => {
     return (
         <WorkPage>
             <Nav />
-            <div>NIKE</div>
             <div ref={workImages} className="work-images">
                 {images.map((img, i) => {
                     return (
