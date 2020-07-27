@@ -62,6 +62,14 @@ body {
   overflow-x: hidden;
 }
 
+h1 {
+  text-transform: uppercase;
+}
+
+h3 {
+  font-weight: normal;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

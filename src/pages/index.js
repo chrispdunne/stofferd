@@ -220,12 +220,12 @@ const Home = () => {
                     }
                 />
 
-                <HomeSection
+                {/* <HomeSection
                     btnLink="/work/firm"
                     title="The Firm"
                     subtitle="React, WordPress"
                     img={<img className="client-logo" src={firm} alt="Nike" />}
-                />
+                /> */}
 
                 <HomeSection color="#000" title="Contact">
                     <form name="contact" method="POST" data-netlify="true">

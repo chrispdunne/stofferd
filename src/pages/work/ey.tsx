@@ -8,8 +8,8 @@ const Nike = () => {
     return (
         <Work
             images={[nike1, nike2, nike3]}
-            subtitle="WordPress, Vanilla JS"
-            title="NIKE x LONDON YOUTH GAMES"
+            subtitle="React, TypeScript, GraphQL"
+            title="Ernst &amp; Young"
         />
     )
 }
