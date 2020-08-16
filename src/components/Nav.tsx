@@ -1,28 +1,18 @@
 import React from "react"
 import { Link } from "gatsby"
-
 import styled from "styled-components"
 import classNames from "classnames"
 import "../index.css"
 
-import Logo from "../Logo"
-import Toggle from "./Toggle"
+import Logo from "./Logo"
+import LogoToggle from "./LogoToggle"
+import Menu from "./Menu"
 // import Pixelation from "../components/Pixelation"
 import pixelate from "../img/pixelate.gif"
 
 type Props = {
     double?: boolean
 }
-type MenuProps = {
-    className?: string
-}
-
-type LogoToggleProps = {
-    className?: string
-    mobNavVis: boolean
-    setMobNavVis: (v: boolean) => void
-}
-
 const StyledNav = styled.div`
     ul {
         position: fixed;
@@ -91,23 +81,20 @@ const StyledNav = styled.div`
     /* 979px */
     @media only screen and (max-width: 61.1875em) {
         ul.main {
-            right: -25rem;
-            transition: right 0.25s ease-in-out;
+            left: -25rem;
+            transition: left 0.3s ease-in;
             z-index: 4;
-            background: #000;
-            height: 20rem;
-            width: 12rem;
+            max-width: 100vw;
             display: flex;
             flex-direction: column;
             justify-content: center;
             margin: 0;
-            border-radius: 100%;
-            padding: 0 8rem 0 0;
-            box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.5);
+            top: 50%;
+            transform: translateY(-50%);
         }
         &.active {
             ul.main {
-                right: -8rem;
+                left: 0;
             }
         }
         .logo {
@@ -117,57 +104,6 @@ const StyledNav = styled.div`
     }
 `
 
-const LogoToggl = styled.div`
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    &.fixed {
-        position: fixed;
-        background-color: #000;
-        z-index: 4;
-        top: -10rem;
-        transition: top 0.3s ease-in-out;
-        &.visible {
-            top: 0rem;
-        }
-    }
-`
-
-const Menu = ({ className = "" }: MenuProps) => {
-    return (
-        <ul className={className}>
-            <li id="about" className="nav-link">
-                <Link to="/about">
-                    <span>About</span>
-                </Link>
-            </li>
-
-            <li id="contact" className="nav-link">
-                <Link to="/contact">
-                    <span>Contact</span>
-                </Link>
-            </li>
-        </ul>
-    )
-}
-
-const LogoToggle = ({
-    className = "",
-    mobNavVis,
-    setMobNavVis,
-}: LogoToggleProps) => {
-    return (
-        <LogoToggl className={className}>
-            <Toggle mobNavVis={mobNavVis} setMobNavVis={setMobNavVis} />
-
-            <Link to="/" className="logo">
-                <Logo />
-            </Link>
-        </LogoToggl>
-    )
-}
 function Nav({ double = false }: Props) {
     let scrollTop = 0
     const [scrollingUp, setScrollingUp] = React.useState(false)
@@ -201,7 +137,7 @@ function Nav({ double = false }: Props) {
                 })}
             />
 
-            <Menu className="main" />
+            <Menu className="main" mobNavVis={mobNavVis} />
             {double && (
                 <div className="reverse desktop" id="nav">
                     <Link to="/" className="logo">

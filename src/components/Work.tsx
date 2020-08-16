@@ -70,27 +70,28 @@ const WorkPage = styled.div`
         transform: translateY(-50%);
     }
     .spot-container {
-        width: 1rem;
-        height: 1rem;
+        width: 12px;
+        height: 12px;
         border: 1px solid #fff;
         border-radius: 100%;
-        margin: 0.5rem 0;
+        margin: 8px 0;
         cursor: pointer;
     }
     .spot {
         background: #fff;
-        width: 1rem;
-        height: 1rem;
+        width: 13px;
+        height: 13px;
         border-radius: 100%;
     }
     .prev,
     .next {
         border: 1px solid #fff;
-        width: 1rem;
-        height: 1rem;
+        width: 9px;
+        height: 9px;
         background: transparent;
         transform: rotate(45deg);
-        margin-left: 0.075rem;
+        padding: 0;
+        margin-left: 2.5px;
         cursor: pointer;
         &:focus {
             outline: 0;
@@ -99,6 +100,7 @@ const WorkPage = styled.div`
     .prev {
         border-right: 0;
         border-bottom: 0;
+        margin-bottom: 6px;
     }
     .next {
         border-left: 0;

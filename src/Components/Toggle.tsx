@@ -13,7 +13,7 @@ const Toggl = styled.button`
     appearance: none;
     background: transparent;
     /* position: absolute; */
-    z-index: 3;
+    z-index: 5;
     left: 2rem;
     top: 2rem;
     border: 0;
@@ -25,8 +25,24 @@ const Toggl = styled.button`
     div {
         height: 0.35rem;
         margin-bottom: 0.35rem;
+        transition: all 0.3s ease-in-out;
         &:last-child {
             margin: 0;
+        }
+    }
+    &.mobNavVis {
+        .piece1 {
+            transform: rotate(45deg);
+            top: 0.7rem;
+            position: relative;
+        }
+        .piece2 {
+            transform: scaleX(0);
+        }
+        .piece3 {
+            transform: rotate(-45deg);
+            top: -0.7rem;
+            position: relative;
         }
     }
 `
@@ -36,10 +52,13 @@ const Toggle = ({ className = "", mobNavVis, setMobNavVis }: Props) => {
         setMobNavVis(!mobNavVis)
     }, [mobNavVis, setMobNavVis])
     return (
-        <Toggl className={classNames("mobile", className)} onClick={onClick}>
-            <div style={{ background: "#fff" }} />
-            <div style={{ background: "#fff" }} />
-            <div style={{ background: "#fff" }} />
+        <Toggl
+            className={classNames("mobile", className, { mobNavVis })}
+            onClick={onClick}
+        >
+            <div className="piece1" style={{ background: "#fff" }} />
+            <div className="piece2" style={{ background: "#fff" }} />
+            <div className="piece3" style={{ background: "#fff" }} />
         </Toggl>
     )
 }
