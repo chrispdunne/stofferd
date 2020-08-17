@@ -81,7 +81,7 @@ const StyledNav = styled.div`
     /* 979px */
     @media only screen and (max-width: 61.1875em) {
         ul.main {
-            left: -25rem;
+            left: -100vw;
             transition: left 0.3s ease-in;
             z-index: 4;
             max-width: 100vw;
