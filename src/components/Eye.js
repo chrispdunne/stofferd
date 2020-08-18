@@ -176,13 +176,24 @@ const Eye = () => {
         [set, setTopLid, setBottomLid, bottomLidClosed, topLidClosed, lidOpen]
     )
 
+    const debugRef = React.useRef(null)
+
+    // const deviceRotate = React.useCallback(()=>{
+
+    // },[]);
+
     const deviceOrientationHandler = React.useCallback(
         (e) => {
-            set({
-                rotation: [e.gamma / 90, a.beta / 180, 0],
+            debugRef.current.innerText =
+                e.alpha + ", " + e.beta + ", " + e.gamma
+
+            requestAnimationFrame(function () {
+                set({
+                    rotation: [e.gamma / 90, a.beta / 180, 0],
+                })
             })
         },
-        [set]
+        [set, debugRef]
     )
 
     React.useEffect(() => {
@@ -202,89 +213,95 @@ const Eye = () => {
     }, [])
 
     return (
-        <Canvas
-            gl={{ antialias: true, alpha: false }}
-            camera={{
-                fov: 75,
-                position: [0, 0, 5],
-            }}
-            onMouseMove={onMouseMove}
-            onClick={onClick}
-            style={{ background: "#000" }}
-        >
-            <ambientLight intensity={0.8} color="#fff" />
+        <>
+            <h3 ref={debugRef}>motion: </h3>
+            <Canvas
+                gl={{ antialias: true, alpha: false }}
+                camera={{
+                    fov: 75,
+                    position: [0, 0, 5],
+                }}
+                onMouseMove={onMouseMove}
+                onClick={onClick}
+                style={{ background: "#000" }}
+            >
+                <ambientLight intensity={0.8} color="#fff" />
 
-            <a.group rotation={rotation}>
-                <mesh>
-                    <sphereBufferGeometry
-                        attach="geometry"
-                        args={[0.9, 32, 32]}
-                    />
+                <a.group rotation={rotation}>
+                    <mesh>
+                        <sphereBufferGeometry
+                            attach="geometry"
+                            args={[0.9, 32, 32]}
+                        />
+                        <meshStandardMaterial
+                            attach="material"
+                            color="#999"
+                            map={veinTexture}
+                        />
+                    </mesh>
+
+                    {/* iris */}
+                    <mesh position={[0, 0, 0.72]} scale={[1, 1, 0.4]}>
+                        <sphereBufferGeometry
+                            attach="geometry"
+                            args={[0.5, 32, 32, 0, 3]}
+                        />
+                        <meshStandardMaterial
+                            attach="material"
+                            color="#075"
+                            emissive="#700"
+                            bumpMap={sunTexture}
+                        />
+                    </mesh>
+
+                    {/* pupil */}
+                    <a.mesh
+                        scale={scale}
+                        position={[0, 0, 0.92]}
+                        rotation={[0, 0, 0]}
+                    >
+                        <circleBufferGeometry
+                            attach="geometry"
+                            args={[0.2, 32]}
+                        />
+                        <meshStandardMaterial
+                            attach="material"
+                            color="#000"
+                            side={THREE.DoubleSide}
+                        />
+                    </a.mesh>
+                </a.group>
+
+                {/* eye glow */}
+                <mesh position={[0, 0, -1]}>
+                    <circleBufferGeometry attach="geometry" args={[1.15, 32]} />
                     <meshStandardMaterial
                         attach="material"
-                        color="#999"
-                        map={veinTexture}
-                    />
-                </mesh>
-
-                {/* iris */}
-                <mesh position={[0, 0, 0.72]} scale={[1, 1, 0.4]}>
-                    <sphereBufferGeometry
-                        attach="geometry"
-                        args={[0.5, 32, 32, 0, 3]}
-                    />
-                    <meshStandardMaterial
-                        attach="material"
-                        color="#075"
-                        emissive="#700"
-                        bumpMap={sunTexture}
-                    />
-                </mesh>
-
-                {/* pupil */}
-                <a.mesh
-                    scale={scale}
-                    position={[0, 0, 0.92]}
-                    rotation={[0, 0, 0]}
-                >
-                    <circleBufferGeometry attach="geometry" args={[0.2, 32]} />
-                    <meshStandardMaterial
-                        attach="material"
-                        color="#000"
+                        color="#fff"
                         side={THREE.DoubleSide}
                     />
+                </mesh>
+
+                {/* eye lid */}
+                <a.mesh position={[0, 0, 0]} rotation={topLidRotation}>
+                    <sphereBufferGeometry
+                        attach="geometry"
+                        args={[1, 32, 32, 1.6, 3]}
+                    />
+                    <meshLambertMaterial attach="material" color="#555" />
                 </a.mesh>
-            </a.group>
 
-            {/* eye glow */}
-            <mesh position={[0, 0, -1]}>
-                <circleBufferGeometry attach="geometry" args={[1.15, 32]} />
-                <meshStandardMaterial
-                    attach="material"
-                    color="#fff"
-                    side={THREE.DoubleSide}
-                />
-            </mesh>
+                <a.mesh position={[0, 0, 0]} rotation={bottomLidRotation}>
+                    <sphereBufferGeometry
+                        attach="geometry"
+                        args={[1, 32, 32, 1.6, 3]}
+                    />
+                    <meshLambertMaterial attach="material" color="#444" />
+                </a.mesh>
 
-            {/* eye lid */}
-            <a.mesh position={[0, 0, 0]} rotation={topLidRotation}>
-                <sphereBufferGeometry
-                    attach="geometry"
-                    args={[1, 32, 32, 1.6, 3]}
-                />
-                <meshLambertMaterial attach="material" color="#555" />
-            </a.mesh>
-
-            <a.mesh position={[0, 0, 0]} rotation={bottomLidRotation}>
-                <sphereBufferGeometry
-                    attach="geometry"
-                    args={[1, 32, 32, 1.6, 3]}
-                />
-                <meshLambertMaterial attach="material" color="#444" />
-            </a.mesh>
-
-            <Effect />
-        </Canvas>
+                <Effect />
+            </Canvas>
+        </>
     )
 }
 
