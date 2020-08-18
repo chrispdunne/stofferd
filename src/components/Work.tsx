@@ -111,18 +111,32 @@ const WorkPage = styled.div`
 const Work = ({ images, subtitle, title }: Props) => {
     const workImages = React.useRef<HTMLDivElement>(null)
     const spots = React.useRef<HTMLDivElement>(null)
-
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".trigger",
-            start: "0px 1px", // trg | scrl
-            end: "bottom bottom", //trg | scrl
-            scrub: true,
-            // markers: true,
-        },
-    })
+    const [tl, setTl] = React.useState<any>(null)
+    React.useEffect(() => {
+        setTl(
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".trigger",
+                    start: "0px 1px", // trg | scrl
+                    end: "bottom bottom", //trg | scrl
+                    scrub: true,
+                    // markers: true,
+                },
+            })
+        )
+    }, [])
+    // const tl = gsap.timeline({
+    //     scrollTrigger: {
+    //         trigger: ".trigger",
+    //         start: "0px 1px", // trg | scrl
+    //         end: "bottom bottom", //trg | scrl
+    //         scrub: true,
+    //         // markers: true,
+    //     },
+    // })
 
     const getNextPrev = React.useCallback(() => {
+        if (!tl) return
         const prog = tl.progress()
         const progSection = prog * (images.length - 1)
         const floored = Math.floor(progSection)
@@ -134,6 +148,7 @@ const Work = ({ images, subtitle, title }: Props) => {
     }, [images, tl])
 
     React.useEffect(() => {
+        if (!tl) return
         const imageEls: Element[] = []
         if (workImages && workImages.current !== null && workImages.current) {
             imageEls.push(...workImages.current.querySelectorAll(".work-image"))
