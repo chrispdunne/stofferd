@@ -165,7 +165,6 @@ const SectionContainer = styled.div`
 `
 
 const Home = () => {
-    const motionRef = React.useRef(null)
     // const onScroll = React.useCallback((e) => {
     //     requestAnimationFrame(() => {
     //         const currentSection = Math.ceil(
@@ -190,30 +189,6 @@ const Home = () => {
     //     }
     // }, [onScroll])
 
-    const deviceOrientationHandler = React.useCallback(
-        (e) => {
-            motionRef.current.innerText =
-                e.alpha + ", " + e.beta + ", " + e.gamma
-        },
-        [motionRef]
-    )
-
-    React.useEffect(() => {
-        if (window && window.DeviceOrientationEvent) {
-            window.addEventListener(
-                "deviceorientation",
-                deviceOrientationHandler,
-                false
-            )
-        }
-        return () => {
-            window.removeEventListener(
-                "deviceorientation",
-                deviceOrientationHandler
-            )
-        }
-    }, [])
-
     return (
         <>
             <Helmet>
@@ -228,7 +203,6 @@ const Home = () => {
             <SectionContainer>
                 <Container>
                     <Caption>
-                        <h3 ref={motionRef}>Motion: </h3>
                         <h3>REACT, WORDPRESS, TYPESCRIPT</h3>
                         <h1>DEVELOPER</h1>
                         <Link to="/about">

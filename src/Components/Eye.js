@@ -176,6 +176,31 @@ const Eye = () => {
         [set, setTopLid, setBottomLid, bottomLidClosed, topLidClosed, lidOpen]
     )
 
+    const deviceOrientationHandler = React.useCallback(
+        (e) => {
+            set({
+                rotation: [e.gamma, a.bet, 0],
+            })
+        },
+        [set]
+    )
+
+    React.useEffect(() => {
+        if (window && window.DeviceOrientationEvent) {
+            window.addEventListener(
+                "deviceorientation",
+                deviceOrientationHandler,
+                false
+            )
+        }
+        return () => {
+            window.removeEventListener(
+                "deviceorientation",
+                deviceOrientationHandler
+            )
+        }
+    }, [])
+
     return (
         <Canvas
             gl={{ antialias: true, alpha: false }}
