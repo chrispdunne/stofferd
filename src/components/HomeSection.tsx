@@ -88,37 +88,6 @@ const Section = styled.section`
         left: 0;
         right: 50%;
     }
-    label {
-        display: block;
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        margin: 2rem 0;
-        font-weight: bold;
-        span {
-            width: 3rem;
-            display: block;
-        }
-        input,
-        textarea {
-            margin: 0;
-            font-family: "g", sans-serif;
-            font-size: 1.5rem;
-            background: transparent;
-            border: 0;
-            border-bottom: 1px solid #fff;
-            color: #fff;
-            position: relative;
-            top: -0.3rem;
-            padding: 0.75rem 0;
-            width: 20rem;
-            &:focus {
-                outline: 0;
-            }
-        }
-        textarea {
-            height: 10rem;
-        }
-    }
 
     /* 979px */
     @media only screen and (max-width: 61.1875em) {
@@ -150,7 +119,7 @@ const HomeSection = ({
             style={{ backgroundColor: color }}
         >
             <div className="text">
-                <h3>{subtitle}</h3>
+                {subtitle && <h3>{subtitle}</h3>}
                 <h2>{title}</h2>
                 {children}
                 {btnLink && (

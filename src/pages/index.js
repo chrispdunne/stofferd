@@ -11,6 +11,7 @@ import { Link } from "gatsby"
 import ContactForm from "../components/ContactForm"
 import { Helmet } from "react-helmet"
 import favicon from "../img/favicon.png"
+import Spacer from "../components/Spacer"
 
 const LoadingDiv = styled.div`
     width: 100vw;
@@ -164,6 +165,7 @@ const SectionContainer = styled.div`
 `
 
 const Home = () => {
+    const motionRef = React.useRef(null)
     // const onScroll = React.useCallback((e) => {
     //     requestAnimationFrame(() => {
     //         const currentSection = Math.ceil(
@@ -188,6 +190,29 @@ const Home = () => {
     //     }
     // }, [onScroll])
 
+    const deviceOrientationHandler = React.useCallback(
+        (e) => {
+            motionRef.current.innerText = e
+        },
+        [motionRef]
+    )
+
+    React.useEffect(() => {
+        if (window && window.DeviceOrientationEvent) {
+            window.addEventListener(
+                "deviceorientation",
+                deviceOrientationHandler,
+                false
+            )
+        }
+        return () => {
+            window.removeEventListener(
+                "deviceorientation",
+                deviceOrientationHandler
+            )
+        }
+    }, [])
+
     return (
         <>
             <Helmet>
@@ -202,6 +227,7 @@ const Home = () => {
             <SectionContainer>
                 <Container>
                     <Caption>
+                        <h3 ref={motionRef}>Motion: </h3>
                         <h3>REACT, WORDPRESS, TYPESCRIPT</h3>
                         <h1>DEVELOPER</h1>
                         <Link to="/about">
@@ -232,16 +258,17 @@ const Home = () => {
                     }
                 />
 
-                {/* <HomeSection
+                <HomeSection
                     btnLink="/work/firm"
                     title="The Firm"
                     subtitle="React, WordPress"
                     img={<img className="client-logo" src={firm} alt="Nike" />}
-                /> */}
+                />
 
                 <HomeSection color="#000" title="Contact">
                     <ContactForm />
                 </HomeSection>
+                <Spacer />
             </SectionContainer>
         </>
     )
