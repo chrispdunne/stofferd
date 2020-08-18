@@ -218,7 +218,9 @@ const Eye = () => {
 
     return (
         <>
-            <h3 ref={debugRef}>motion: </h3>
+            <h3 style={{ height: "40px" }} ref={debugRef}>
+                motion:
+            </h3>
             <Canvas
                 gl={{ antialias: true, alpha: false }}
                 camera={{
