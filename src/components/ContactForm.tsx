@@ -11,6 +11,7 @@ const Form = styled.form`
 
 const ContactForm = () => {
     const [formValues, setFormValues] = React.useState({
+        ["form-name"]: "contact",
         name: "",
         email: "",
         message: "",
@@ -54,6 +55,7 @@ const ContactForm = () => {
                 <div>{status}</div>
             ) : (
                 <Form
+                    action="/"
                     name="contact"
                     method="POST"
                     data-netlify="true"
