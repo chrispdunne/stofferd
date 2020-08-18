@@ -192,7 +192,8 @@ const Home = () => {
 
     const deviceOrientationHandler = React.useCallback(
         (e) => {
-            motionRef.current.innerText = e
+            motionRef.current.innerText =
+                e.alpha + ", " + e.beta + ", " + e.gamma
         },
         [motionRef]
     )
