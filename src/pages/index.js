@@ -8,6 +8,7 @@ import Loadable from "react-loadable"
 import Nav from "../components/Nav"
 import placeholder from "../img/placeholder-eye-1.jpg"
 import { Link } from "gatsby"
+import ContactForm from "../components/ContactForm"
 
 const LoadingDiv = styled.div`
     width: 100vw;
@@ -184,6 +185,7 @@ const Home = () => {
     //         window.removeEventListener("scroll", onScroll)
     //     }
     // }, [onScroll])
+
     return (
         <>
             <Nav double />
@@ -228,23 +230,7 @@ const Home = () => {
                 /> */}
 
                 <HomeSection color="#000" title="Contact">
-                    <form name="contact" method="POST" data-netlify="true">
-                        <label>
-                            <span>Name:</span>
-                            <input />
-                        </label>
-                        <label>
-                            <span>Email:</span>
-                            <input />
-                        </label>
-                        <label>
-                            <span>Message:</span>
-                            <textarea />
-                        </label>
-                        <button type="submit" className="btn">
-                            Send message
-                        </button>
-                    </form>
+                    <ContactForm />
                 </HomeSection>
             </SectionContainer>
         </>
