@@ -185,11 +185,15 @@ const Eye = () => {
     const deviceOrientationHandler = React.useCallback(
         (e) => {
             debugRef.current.innerText =
-                e.alpha + ", " + e.beta + ", " + e.gamma
+                Math.round(e.gamma) / 90 + ", " + Math.round(e.beta) / 180
 
             requestAnimationFrame(function () {
                 set({
-                    rotation: [e.gamma / 90, a.beta / 180, 0],
+                    rotation: [
+                        Math.round(e.gamma) / 90,
+                        Math.round(a.beta) / 180,
+                        0,
+                    ],
                 })
             })
         },
