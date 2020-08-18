@@ -179,7 +179,7 @@ const Eye = () => {
     const deviceOrientationHandler = React.useCallback(
         (e) => {
             set({
-                rotation: [e.gamma, a.bet, 0],
+                rotation: [e.gamma / 90, a.beta / 180, 0],
             })
         },
         [set]
