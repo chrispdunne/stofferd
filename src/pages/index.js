@@ -9,6 +9,7 @@ import Nav from "../components/Nav"
 import placeholder from "../img/placeholder-eye-1.jpg"
 import { Link } from "gatsby"
 import ContactForm from "../components/ContactForm"
+import { Helmet } from "react-helmet"
 
 const LoadingDiv = styled.div`
     width: 100vw;
@@ -188,6 +189,13 @@ const Home = () => {
 
     return (
         <>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>
+                    Stoffer D - React, WordPress, TypeScript Developer
+                </title>
+                <link rel="canonical" href="http://mysite.com/example" />
+            </Helmet>
             <Nav double />
             <SectionContainer>
                 <Container>
