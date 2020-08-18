@@ -10,6 +10,7 @@ import placeholder from "../img/placeholder-eye-1.jpg"
 import { Link } from "gatsby"
 import ContactForm from "../components/ContactForm"
 import { Helmet } from "react-helmet"
+import favicon from "../img/favicon.png"
 
 const LoadingDiv = styled.div`
     width: 100vw;
@@ -195,6 +196,7 @@ const Home = () => {
                     Stoffer D - React, WordPress, TypeScript Developer
                 </title>
                 <link rel="canonical" href="http://mysite.com/example" />
+                <link rel="shortcut icon" type="image/png" href={favicon} />
             </Helmet>
             <Nav double />
             <SectionContainer>
