@@ -178,7 +178,7 @@ const Eye = () => {
         [set, setTopLid, setBottomLid, bottomLidClosed, topLidClosed, lidOpen]
     )
 
-    const debugRef = React.useRef(null)
+    // const debugRef = React.useRef(null)
 
     // const deviceRotate = React.useCallback(()=>{
 
@@ -186,10 +186,10 @@ const Eye = () => {
 
     const deviceOrientationHandler = React.useCallback(
         (e) => {
-            debugRef.current.innerText =
-                (Math.round(e.beta) / 180).toFixed(3) +
-                ", " +
-                (Math.round(e.gamma) / 90).toFixed(3)
+            // debugRef.current.innerText =
+            //     (Math.round(e.beta) / 180).toFixed(3) +
+            //     ", " +
+            //     (Math.round(e.gamma) / 90).toFixed(3)
 
             requestAnimationFrame(function () {
                 set({
@@ -224,9 +224,9 @@ const Eye = () => {
 
     return (
         <>
-            <h3 style={{ height: "40px" }} ref={debugRef}>
+            {/* <h3 style={{ height: "40px" }} ref={debugRef}>
                 motion:
-            </h3>
+            </h3> */}
             <Canvas
                 gl={{ antialias: true, alpha: false }}
                 camera={{
