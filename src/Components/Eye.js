@@ -203,7 +203,7 @@ const Eye = () => {
                 })
             })
         },
-        [set, debugRef]
+        [set]
     )
 
     React.useEffect(() => {
