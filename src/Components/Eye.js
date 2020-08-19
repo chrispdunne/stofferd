@@ -194,10 +194,10 @@ const Eye = () => {
             requestAnimationFrame(function () {
                 set({
                     rotation: [
-                        // (Math.round(e.gamma) / 90).toFixed(3),
-                        // (Math.round(a.beta) / 180).toFixed(3),
-                        0,
-                        0,
+                        (Math.round(e.gamma) / 90).toFixed(3),
+                        (Math.round(e.beta) / 180).toFixed(3),
+                        // 0,
+                        // 0,
                         0,
                     ],
                 })
