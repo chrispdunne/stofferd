@@ -46,7 +46,9 @@ const Login = ({ loggedIn = false, setLoggedIn }: Props) => {
 
             if (
                 process.env.GATSBY_PASSWORDS &&
-                process.env.GATSBY_PASSWORDS.split(" ").includes(e.target.value)
+                process.env.GATSBY_PASSWORDS.split(" ").includes(
+                    e.target.value.toLowerCase()
+                )
             )
                 setLoggedIn()
         },
