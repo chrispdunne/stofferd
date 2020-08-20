@@ -12,6 +12,7 @@ import ContactForm from "../components/ContactForm"
 import { Helmet } from "react-helmet"
 import favicon from "../img/favicon.png"
 import Spacer from "../components/Spacer"
+import Login from "../components/Login"
 
 const LoadingDiv = styled.div`
     width: 100vw;
@@ -160,34 +161,22 @@ const Caption = styled.div`
 
 const SectionContainer = styled.div`
     height: 100vh;
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
+    /* 980px */
+    @media only screen and (min-width: 61.25em) {
+        scroll-snap-type: y mandatory;
+        overflow-y: scroll;
+    }
 `
 
 const Home = () => {
-    // const onScroll = React.useCallback((e) => {
-    //     requestAnimationFrame(() => {
-    //         const currentSection = Math.ceil(
-    //             window.scrollY / window.innerHeight
-    //         )
-    //         const progress =
-    //             (window.scrollY - currentSection * window.innerHeight) /
-    //                 window.innerHeight +
-    //             1
-    //         console.log({ currentSection })
-    //         console.log({ progress })
-
-    //         // console.log({ e })
-    //         // console.log(window.scrollY)
-    //         // console.log(window.innerHeight)
-    //     })
-    // }, [])
-    // React.useEffect(() => {
-    //     window.addEventListener("scroll", onScroll)
-    //     return () => {
-    //         window.removeEventListener("scroll", onScroll)
-    //     }
-    // }, [onScroll])
+    const [loggedIn, _setLoggedIn] = React.useState(false)
+    const setLoggedIn = React.useCallback(() => {
+        _setLoggedIn(true)
+        window.localStorage.setItem("loggedin", true)
+    }, [_setLoggedIn])
+    React.useEffect(() => {
+        if (window.localStorage.getItem("loggedin")) setLoggedIn(true)
+    }, [setLoggedIn])
 
     return (
         <>
@@ -199,6 +188,7 @@ const Home = () => {
                 <link rel="canonical" href="http://mysite.com/example" />
                 <link rel="shortcut icon" type="image/png" href={favicon} />
             </Helmet>
+            <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
             <Nav double />
             <SectionContainer>
                 <Container>
