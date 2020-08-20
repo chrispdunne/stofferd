@@ -42,6 +42,7 @@ const Login = ({ loggedIn = false, setLoggedIn }: Props) => {
     const handleChange = React.useCallback(
         (e) => {
             setTyped(e.target.value)
+            console.log(process.env.PASSWORDS)
             if (
                 process.env.PASSWORDS &&
                 process.env.PASSWORDS.split(" ").includes(e.target.value)
