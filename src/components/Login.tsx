@@ -34,6 +34,7 @@ const LoginBox = styled.div`
         outline: 0;
         border: 0;
         border-bottom: 1px solid #fff;
+        max-width: 90vw;
     }
 `
 
