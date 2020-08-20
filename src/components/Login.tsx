@@ -44,6 +44,8 @@ const Login = ({ loggedIn = false, setLoggedIn }: Props) => {
         (e) => {
             setTyped(e.target.value)
             console.log(process.env.GATSBY_PASSWORDS)
+            console.log(e.target.value)
+
             if (
                 process.env.GATSBY_PASSWORDS &&
                 process.env.GATSBY_PASSWORDS.split(" ").includes(e.target.value)
