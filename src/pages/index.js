@@ -185,7 +185,7 @@ const Home = () => {
                 <title>
                     Stoffer D - React, WordPress, TypeScript Developer
                 </title>
-                <link rel="canonical" href="http://mysite.com/example" />
+                <link rel="canonical" href="https://stofferd.com" />
                 <link rel="shortcut icon" type="image/png" href={favicon} />
             </Helmet>
             <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
