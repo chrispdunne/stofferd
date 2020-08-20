@@ -57,7 +57,7 @@ const Login = ({ loggedIn = false, setLoggedIn }: Props) => {
     return loggedIn ? null : (
         <LoginBox>
             <div className="container">
-                <label for="password">Password</label>
+                <label htmlFor="password">Password</label>
                 <input id="password" value={typed} onChange={handleChange} />
             </div>
         </LoginBox>

@@ -181,6 +181,20 @@ const Eye = () => {
     // const deviceRotate = React.useCallback(()=>{
 
     // },[]);
+    const handleClickAnywhere = React.useCallback(
+        (e) => {
+            if (!window) return
+            const yPosition =
+                (e.y - window.innerHeight / 2) / (window.innerHeight / 2)
+
+            const xPosition =
+                (e.x - window.innerWidth / 2) / (window.innerWidth / 2)
+            set({
+                rotation: [yPosition, xPosition, 0],
+            })
+        },
+        [set]
+    )
 
     const deviceOrientationHandler = React.useCallback(
         (e) => {
@@ -205,6 +219,10 @@ const Eye = () => {
     )
 
     React.useEffect(() => {
+        if (document) {
+            // listen for clicks/touches elsewhere to move the eye
+            document.addEventListener("click", handleClickAnywhere)
+        }
         if (window && window.DeviceOrientationEvent) {
             window.addEventListener(
                 "deviceorientation",
@@ -213,6 +231,8 @@ const Eye = () => {
             )
         }
         return () => {
+            // cleanup
+            window.removeEventListener("click", handleClickAnywhere)
             window.removeEventListener(
                 "deviceorientation",
                 deviceOrientationHandler

@@ -17,17 +17,17 @@ const MenuContainer = styled.div`
 const EyeBallGlow = styled.div`
     position: absolute;
     z-index: 3;
-    top: 40%;
-    left: 50%;
+    top: calc(40% - 70px);
+    left: calc(50% - 70px);
     transform: translateX(-50%) translateY(-50%);
     background: rgba(0, 0, 0, 0.9);
     width: 0;
     height: 0;
     border-radius: 100%;
-    transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out 0.3s;
     &.grown {
-        width: 50rem;
-        height: 50rem;
+        width: 100rem;
+        height: 100rem;
     }
 `
 
