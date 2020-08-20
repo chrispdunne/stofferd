@@ -54,7 +54,8 @@ const Login = ({ loggedIn = false, setLoggedIn }: Props) => {
         },
         [setLoggedIn, setTyped]
     )
-    return loggedIn ? null : (
+    return loggedIn === true ||
+        process.env.GATSBY_PASSWORD_PROTECTED !== "true" ? null : (
         <LoginBox>
             <div className="container">
                 <label htmlFor="password">Password</label>
