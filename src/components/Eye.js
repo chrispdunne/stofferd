@@ -219,7 +219,7 @@ const Eye = () => {
     )
 
     React.useEffect(() => {
-        if (document) {
+        if (document && !window.DeviceOrientationEvent) {
             // listen for clicks/touches elsewhere to move the eye
             document.addEventListener("click", handleClickAnywhere)
         }
