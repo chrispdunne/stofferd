@@ -155,8 +155,6 @@ const Eye = () => {
                 (window.innerHeight / 2)
             const xPosition =
                 (x - window.innerWidth / 2) / (window.innerWidth / 2)
-            console.log(yPosition)
-            console.log(xPosition)
 
             if (
                 yPosition < 0.1 &&
