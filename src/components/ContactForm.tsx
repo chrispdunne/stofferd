@@ -36,8 +36,18 @@ const Form = styled.form`
             height: 10rem;
         }
     }
+    button {
+        display: block;
+        margin: auto;
+    }
     .phone {
         display: none;
+    }
+    @media only screen and (max-width: 61.1875em) {
+        form {
+            width: 20rem;
+            margin: auto;
+        }
     }
 `
 

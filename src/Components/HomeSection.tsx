@@ -9,6 +9,7 @@ type Props = {
     subtitle?: string
     color?: string
     children?: React.ReactNode
+    id?: string
     img?: React.ReactNode
     btnLink?: string
 }
@@ -17,7 +18,7 @@ const Section = styled.section`
     height: 100vh;
     position: relative;
     color: #fff;
-    scroll-snap-align: start;
+    /* scroll-snap-align: start; */
 
     &.white {
         color: #000;
@@ -108,6 +109,7 @@ const HomeSection = ({
     color = "#fff",
     children,
     className = "",
+    id,
     img,
     title,
     subtitle,
@@ -118,6 +120,7 @@ const HomeSection = ({
             className={classNames({ white: color === "#fff" }, className)}
             style={{ backgroundColor: color }}
         >
+            {id && <a id={id}></a>}
             <div className="text">
                 {subtitle && <h3>{subtitle}</h3>}
                 <h2>{title}</h2>

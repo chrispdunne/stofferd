@@ -51,7 +51,8 @@
 
 
 html {
-  overflow-x: hidden;
+  /* test this after removing GSAP scrolltrigger markers */
+  /* overflow: hidden; */
 }
 
 body {

@@ -34,13 +34,17 @@ const EyeBallGlow = styled.div`
 const Menu = ({ className = "", mobNavVis }: Props) => {
     return (
         <MenuContainer>
-            <ul className={className}>
+            <ul className={className + " nav"}>
                 <li id="about" className="nav-link">
                     <Link to="/about">
                         <span>About</span>
                     </Link>
                 </li>
-
+                <li id="work" className="nav-link">
+                    <Link to="/work">
+                        <span>Work</span>
+                    </Link>
+                </li>
                 <li id="contact" className="nav-link">
                     <Link to="/contact">
                         <span>Contact</span>

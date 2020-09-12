@@ -8,11 +8,14 @@ import Loadable from "react-loadable"
 import Nav from "../components/Nav"
 import placeholder from "../img/placeholder-eye-1.jpg"
 import { Link } from "gatsby"
-import ContactForm from "../components/ContactForm"
 import { Helmet } from "react-helmet"
 import favicon from "../img/favicon.png"
 import Spacer from "../components/Spacer"
 import Login from "../components/Login"
+import gsap from "gsap"
+import ScrollTrigger from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
 
 const LoadingDiv = styled.div`
     width: 100vw;
@@ -163,8 +166,8 @@ const SectionContainer = styled.div`
     height: 100vh;
     /* 980px */
     @media only screen and (min-width: 61.25em) {
-        scroll-snap-type: y mandatory;
-        overflow-y: scroll;
+        /* scroll-snap-type: y mandatory;
+        overflow-y: scroll; */
     }
 `
 
@@ -172,11 +175,51 @@ const Home = () => {
     const [loggedIn, _setLoggedIn] = React.useState(false)
     const setLoggedIn = React.useCallback(() => {
         _setLoggedIn(true)
-        window.localStorage.setItem("loggedin", true)
+        window.localStorage.setItem("loggedin", "true")
     }, [_setLoggedIn])
     React.useEffect(() => {
         if (window.localStorage.getItem("loggedin")) setLoggedIn(true)
     }, [setLoggedIn])
+
+    const [tl, setTl] = React.useState<any>(null)
+    React.useEffect(() => {
+        setTl(
+            gsap.timeline({
+                scrollTrigger: {
+                    // trigger: ".nav.main",
+                    // toggleClass: "p0000",
+                    // start: 500 + " " + navBottom, // trg | scrl
+                    // end: 500 + " " + navTop, //trg | scrl
+                    scrub: true,
+                },
+                // opacity: 0.2,
+                // x: 20,
+            })
+        )
+    }, [])
+
+    if (tl) {
+        const nav = document.querySelector(".nav.main")
+        const navBottom = nav ? nav.offsetTop + nav.offsetHeight / 2 : 0
+        const navTop = nav ? nav.offsetTop - nav.offsetHeight / 2 : 0
+        const section = document.querySelector(".home-section")
+        const sectionTop = section.offsetTop
+        const sectionBottom = section.offsetTop + section.offsetHeight
+        // tl.to(".home-section", { opacity: 0, duration: 1, ease: "none" })
+        // tl.to(".nav.main", { toggleClass: "c0000" })
+        tl.to(".nav.main", {
+            scrollTrigger: {
+                trigger: ".nav.main",
+                toggleClass: "p0000",
+                start: sectionTop + " " + navBottom, // trg | scrl
+                end: sectionTop + " " + navTop, //trg | scrl
+                scrub: true,
+                // markers: true,
+            },
+            opacity: 0,
+            // x: "-100vw",
+        })
+    }
 
     return (
         <>
@@ -203,6 +246,7 @@ const Home = () => {
                 </Container>
 
                 <HomeSection
+                    className="home-section"
                     btnLink="work/nike"
                     title="Nike"
                     subtitle="React, WordPress"
@@ -230,9 +274,6 @@ const Home = () => {
                     img={<img className="client-logo" src={firm} alt="Nike" />}
                 />
 
-                <HomeSection color="#000" title="Contact">
-                    <ContactForm />
-                </HomeSection>
                 <Spacer />
             </SectionContainer>
         </>

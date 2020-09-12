@@ -1,20 +1,20 @@
 import React from "react"
-import Nav from "../components/Nav"
+import Nav from "../../components/Nav"
 import styled from "styled-components"
 
-const AboutPage = styled.main`
+const WorkPage = styled.main`
     background: #000;
     min-height: 100vh;
     color: #fff;
 `
 
-const About = () => {
+const Work = () => {
     return (
-        <AboutPage>
-            ABOUT
+        <WorkPage>
+            Woork
             <Nav />
-        </AboutPage>
+        </WorkPage>
     )
 }
 
-export default About
+export default Work
