@@ -200,72 +200,53 @@ const Home = () => {
 
     if (tl) {
         const nav = document.querySelector(".nav.main")
-        const navBottom = nav ? nav.offsetTop + nav.offsetHeight / 2 : 0
         const navTop = nav ? nav.offsetTop - nav.offsetHeight / 2 : 0
-        // const section = document.querySelector(".home-section")
-        // console.dir({ window })
-        console.log(window.scrollY)
+        const navLinks = document.querySelectorAll(".nav-link a")
+        const sections = document.querySelectorAll(".home-section")
+        console.log({ sections })
 
-        // const sectionTop = section.offsetTop
+        navLinks.forEach((link) => {
+            const linkHeight = link.offsetHeight
+            const linkBottom = link ? link.offsetTop + link.offsetHeight / 2 : 0
+            const linkTop = link ? link.offsetTop - link.offsetHeight / 2 : 0
+            console.dir(link)
+            sections.forEach((section, i) => {
+                console.log({ i })
+                console.log(i % 2)
 
-        // const sectionBottom = section.offsetTop + section.offsetHeight
-        // tl.to(".home-section", { opacity: 0, duration: 1, ease: "none" })
-        // tl.to(".nav.main", { toggleClass: "c0000" })
-        // tl.to(".nav.main", {
-        //     scrollTrigger: {
-        //         trigger: ".nav.main",
-        //         // toggleClass: "reverse",
-        //         // if you set first param to 0 it still adds the top offset of nav
-        //         start: window.innerHeight - navTop + " " + navBottom, // trg | scrl
-        //         end: window.innerHeight - navTop + " " + navTop, //trg | scrl
-        //         scrub: true,
-        //         markers: true,
-        //     },
-        //     color: "#000000",
-        //     backgroundColor: "#000000",
-        //     // css: { color: "#000" },
-        //     // opacity: 0,
-        //     // x: "-100vw",
-        // })
-        const link = document.querySelector("#contact a")
-        const linkHeight = link.offsetHeight
-        const linkBottom = link ? link.offsetTop + link.offsetHeight / 2 : 0
-        const linkTop = link ? link.offsetTop - link.offsetHeight / 2 : 0
-        console.dir(link)
-        tl.fromTo(
-            ".nav #contact a",
-            { color: "#fff" },
-            {
-                scrollTrigger: {
-                    trigger: ".nav #contact a",
-                    // toggleClass: "reverse",
-                    // if you set first param to 0 it still adds the top offset of nav
-                    start:
-                        window.innerHeight -
-                        window.scrollY -
-                        navTop -
-                        linkTop -
-                        linkHeight / 2 +
-                        " " +
-                        (linkBottom + navTop + linkHeight / 2 - 10), // trg | scrl
-                    end:
-                        window.innerHeight -
-                        window.scrollY -
-                        navTop -
-                        linkTop -
-                        linkHeight / 2 +
-                        " " +
-                        (linkTop + navTop + linkHeight / 2 + 10), //trg | scrl
-                    scrub: true,
-                    markers: true,
-                },
-                color: "#000",
-                // backgroundColor: "#000000",
-                // css: { color: "#000" },
-                // opacity: 0,
-                // x: "-100vw",
-            }
-        )
+                tl.fromTo(
+                    link,
+                    { color: i % 2 ? "#000" : "#fff" },
+                    {
+                        scrollTrigger: {
+                            trigger: link,
+                            // if you set first param to 0 it still adds the top offset of nav
+                            start:
+                                i * window.innerHeight +
+                                window.innerHeight -
+                                window.scrollY -
+                                navTop -
+                                linkTop -
+                                linkHeight / 2 +
+                                " " +
+                                (linkBottom + navTop + linkHeight / 2 - 10), // trg | scrl
+                            end:
+                                i * window.innerHeight +
+                                window.innerHeight -
+                                window.scrollY -
+                                navTop -
+                                linkTop -
+                                linkHeight / 2 +
+                                " " +
+                                (linkTop + navTop + linkHeight / 2 + 10), //trg | scrl
+                            scrub: true,
+                            // markers: true,
+                        },
+                        color: i % 2 ? "#fff" : "#000",
+                    }
+                )
+            })
+        })
     }
 
     return (
@@ -301,6 +282,7 @@ const Home = () => {
                 />
 
                 <HomeSection
+                    className="home-section"
                     btnLink="/work/ey"
                     color="#000"
                     title="Ernst &amp; Young"
@@ -315,6 +297,7 @@ const Home = () => {
                 />
 
                 <HomeSection
+                    className="home-section"
                     btnLink="/work/firm"
                     title="The Firm"
                     subtitle="React, WordPress"
