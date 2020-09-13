@@ -21,7 +21,7 @@ const LoadingDiv = styled.div`
     width: 100vw;
     height: 100vh;
     background: #000;
-    color: #fff;
+    /* color: #fff; */
     text-align: center;
 
     .placeholder {
@@ -202,23 +202,70 @@ const Home = () => {
         const nav = document.querySelector(".nav.main")
         const navBottom = nav ? nav.offsetTop + nav.offsetHeight / 2 : 0
         const navTop = nav ? nav.offsetTop - nav.offsetHeight / 2 : 0
-        const section = document.querySelector(".home-section")
-        const sectionTop = section.offsetTop
-        const sectionBottom = section.offsetTop + section.offsetHeight
+        // const section = document.querySelector(".home-section")
+        // console.dir({ window })
+        console.log(window.scrollY)
+
+        // const sectionTop = section.offsetTop
+
+        // const sectionBottom = section.offsetTop + section.offsetHeight
         // tl.to(".home-section", { opacity: 0, duration: 1, ease: "none" })
         // tl.to(".nav.main", { toggleClass: "c0000" })
-        tl.to(".nav.main", {
-            scrollTrigger: {
-                trigger: ".nav.main",
-                toggleClass: "p0000",
-                start: sectionTop + " " + navBottom, // trg | scrl
-                end: sectionTop + " " + navTop, //trg | scrl
-                scrub: true,
-                // markers: true,
-            },
-            opacity: 0,
-            // x: "-100vw",
-        })
+        // tl.to(".nav.main", {
+        //     scrollTrigger: {
+        //         trigger: ".nav.main",
+        //         // toggleClass: "reverse",
+        //         // if you set first param to 0 it still adds the top offset of nav
+        //         start: window.innerHeight - navTop + " " + navBottom, // trg | scrl
+        //         end: window.innerHeight - navTop + " " + navTop, //trg | scrl
+        //         scrub: true,
+        //         markers: true,
+        //     },
+        //     color: "#000000",
+        //     backgroundColor: "#000000",
+        //     // css: { color: "#000" },
+        //     // opacity: 0,
+        //     // x: "-100vw",
+        // })
+        const link = document.querySelector("#contact a")
+        const linkHeight = link.offsetHeight
+        const linkBottom = link ? link.offsetTop + link.offsetHeight / 2 : 0
+        const linkTop = link ? link.offsetTop - link.offsetHeight / 2 : 0
+        console.dir(link)
+        tl.fromTo(
+            ".nav #contact a",
+            { color: "#fff" },
+            {
+                scrollTrigger: {
+                    trigger: ".nav #contact a",
+                    // toggleClass: "reverse",
+                    // if you set first param to 0 it still adds the top offset of nav
+                    start:
+                        window.innerHeight -
+                        window.scrollY -
+                        navTop -
+                        linkTop -
+                        linkHeight / 2 +
+                        " " +
+                        (linkBottom + navTop + linkHeight / 2 - 10), // trg | scrl
+                    end:
+                        window.innerHeight -
+                        window.scrollY -
+                        navTop -
+                        linkTop -
+                        linkHeight / 2 +
+                        " " +
+                        (linkTop + navTop + linkHeight / 2 + 10), //trg | scrl
+                    scrub: true,
+                    markers: true,
+                },
+                color: "#000",
+                // backgroundColor: "#000000",
+                // css: { color: "#000" },
+                // opacity: 0,
+                // x: "-100vw",
+            }
+        )
     }
 
     return (
@@ -232,7 +279,7 @@ const Home = () => {
                 <link rel="shortcut icon" type="image/png" href={favicon} />
             </Helmet>
             <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-            <Nav double />
+            <Nav />
             <SectionContainer>
                 <Container>
                     <Caption>

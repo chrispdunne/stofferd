@@ -42,10 +42,6 @@ const Section = styled.section`
         .btn a:hover {
             color: #fff;
         }
-        .cover {
-            left: 50%;
-            right: 0;
-        }
     }
     button {
         margin-top: 1rem;
@@ -80,14 +76,6 @@ const Section = styled.section`
         font-size: 1rem;
         font-weight: normal;
         margin: 0 0 0.4rem;
-    }
-    .cover {
-        position: absolute;
-        z-index: 4;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 50%;
     }
 
     /* 979px */
@@ -132,7 +120,6 @@ const HomeSection = ({
                 )}
             </div>
             {img}
-            <div style={{ backgroundColor: color }} className="cover desktop" />
         </Section>
     )
 }

@@ -10,9 +10,6 @@ import Menu from "./Menu"
 // import Pixelation from "../components/Pixelation"
 import pixelate from "../img/pixelate.gif"
 
-type Props = {
-    double?: boolean
-}
 const StyledNav = styled.div`
     ul {
         position: fixed;
@@ -26,7 +23,7 @@ const StyledNav = styled.div`
         text-align: right;
     }
     a {
-        color: #fff;
+        /* color: red; */
         font-weight: bold;
         text-transform: uppercase;
         text-decoration: none;
@@ -75,7 +72,7 @@ const StyledNav = styled.div`
             text-align: left;
         }
         a {
-            color: #000;
+            color: blue;
         }
     }
     /* 979px */
@@ -104,7 +101,7 @@ const StyledNav = styled.div`
     }
 `
 
-function Nav({ double = false }: Props) {
+function Nav() {
     let scrollTop = 0
     const [scrollingUp, setScrollingUp] = React.useState(false)
     const [mobNavVis, setMobNavVis] = React.useState(false)
@@ -138,14 +135,6 @@ function Nav({ double = false }: Props) {
             />
 
             <Menu className="main" mobNavVis={mobNavVis} />
-            {double && (
-                <div className="reverse desktop" id="nav">
-                    <Link to="/" className="logo">
-                        <Logo background="#000" />
-                    </Link>
-                    <Menu className="desktop" />
-                </div>
-            )}
         </StyledNav>
     )
 }
