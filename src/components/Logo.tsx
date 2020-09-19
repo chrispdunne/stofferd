@@ -16,6 +16,8 @@ const Grid = styled.div`
         width: 1rem;
         height: 1rem;
         transition: all 0.2s ease-in-out;
+        box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 1);
+        background: #f7f7f7;
         &:nth-child(8n + 1) {
             transition-delay: 0.05s;
         }
@@ -36,12 +38,20 @@ const Grid = styled.div`
         opacity: 0;
     }
     &:hover {
-        background: #000;
         .fill {
-            opacity: 0;
+            border: 0.5rem solid black;
+            box-sizing: border-box;
+            border-left-color: transparent;
+        }
+        /* background: #000; */
+        div {
+            /* box-shadow: none; */
+        }
+        .fill {
+            /* opacity: 0; */
         }
         .empty {
-            opacity: 1;
+            /* opacity: 1; */
         }
     }
     /* 979px */
@@ -59,7 +69,7 @@ const Grid = styled.div`
 const Logo = ({ background = "#fff" }) => {
     const style = { background }
     return (
-        <Grid>
+        <Grid className="logo-grid">
             <div className="empty" style={style} />
             <div className="fill" style={style} />
             <div className="fill" style={style} />

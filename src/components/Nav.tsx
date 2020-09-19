@@ -8,7 +8,9 @@ import Logo from "./Logo"
 import LogoToggle from "./LogoToggle"
 import Menu from "./Menu"
 // import Pixelation from "../components/Pixelation"
-import pixelate from "../img/pixelate.gif"
+// import pixelate from "../img/pixelate.gif"
+// import arrows from "../img/arrow.gif"
+import arrows from "../img/arrow-border.gif"
 
 const StyledNav = styled.div`
     ul {
@@ -30,20 +32,26 @@ const StyledNav = styled.div`
         font-size: 20px;
         padding: 1rem 3rem;
         display: inline-block;
+        &:visited {
+            color: #fff;
+        }
     }
     .nav-link {
         transition: transform 0.25s ease-in-out;
 
         span {
-            background-image: url(${pixelate});
+            border-image-source: url(${arrows});
+            border-image-slice: 0 0 0 0;
+            border-image-width: 8px;
+            border-image-outset: 0;
+            border-image-repeat: round;
+            border-style: solid;
+            border-width: 8px;
             background-size: 0;
-            background-repeat: repeat-x;
-            background-position: center;
         }
         &:hover {
-            /* transform: scale(1.2); */
             span {
-                background-size: 29px 14px;
+                border-image-slice: 0 0 8 0;
             }
         }
     }
@@ -126,13 +134,13 @@ function Nav() {
     return (
         <StyledNav id="nav" className={mobNavVis ? "active" : ""}>
             <LogoToggle mobNavVis={mobNavVis} setMobNavVis={setMobNavVis} />
-            <LogoToggle
+            {/* <LogoToggle
                 mobNavVis={mobNavVis}
                 setMobNavVis={setMobNavVis}
                 className={classNames("fixed", {
                     visible: scrollingUp,
                 })}
-            />
+            /> */}
 
             <Menu className="main" mobNavVis={mobNavVis} />
         </StyledNav>

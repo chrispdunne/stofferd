@@ -203,17 +203,13 @@ const Home = () => {
         const navTop = nav ? nav.offsetTop - nav.offsetHeight / 2 : 0
         const navLinks = document.querySelectorAll(".nav-link a")
         const sections = document.querySelectorAll(".home-section")
-        console.log({ sections })
 
         navLinks.forEach((link) => {
             const linkHeight = link.offsetHeight
             const linkBottom = link ? link.offsetTop + link.offsetHeight / 2 : 0
             const linkTop = link ? link.offsetTop - link.offsetHeight / 2 : 0
-            console.dir(link)
             sections.forEach((section, i) => {
-                console.log({ i })
-                console.log(i % 2)
-
+                //@TODO REFACTOR  - repeating above
                 tl.fromTo(
                     link,
                     { color: i % 2 ? "#000" : "#fff" },

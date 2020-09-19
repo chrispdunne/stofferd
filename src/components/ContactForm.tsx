@@ -3,6 +3,10 @@ import styled from "styled-components"
 import axios from "axios"
 import * as qs from "query-string"
 
+const Status = styled.div`
+    text-align: center;
+`
+
 const Form = styled.form`
     label {
         display: block;
@@ -93,7 +97,7 @@ const ContactForm = () => {
     return (
         <>
             {status ? (
-                <div>{status}</div>
+                <Status>{status}</Status>
             ) : (
                 <Form
                     name="contact"

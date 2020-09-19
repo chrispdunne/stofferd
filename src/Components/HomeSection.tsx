@@ -23,9 +23,9 @@ const Section = styled.section`
     &.white {
         color: #000;
         .text {
-            right: 3rem;
+            /* right: 3rem;
             left: initial;
-            text-align: right;
+            text-align: right; */
         }
         h2,
         h3,
