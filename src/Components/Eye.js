@@ -23,6 +23,11 @@ import { useSpring, a } from "react-spring/three"
 
 import sunUrl from "../img/sun-texture.jpg"
 import veinUrl from "../img/veins.jpg"
+import fav1 from "../img/favicon-1.png"
+import fav2 from "../img/favicon-2.png"
+import fav3 from "../img/favicon-3.png"
+import fav4 from "../img/favicon-4.png"
+import fav5 from "../img/favicon-5.png"
 
 extend({
     CircleBufferGeometry,
@@ -146,9 +151,25 @@ const Eye = () => {
         pupilExpanded,
     ])
 
+    const favX = React.useRef(0)
+    const favicons = { fav1, fav2, fav3, fav4, fav5 }
+    const setFav = React.useCallback(
+        (newFavX) => {
+            if (newFavX === favX.current) return
+            const fav = document.getElementById("fav")
+            console.log({ fav })
+            fav.href = favicons["fav" + newFavX + 1]
+            favX.current = newFavX
+            console.log("updating!!!")
+        },
+        [favicons, favX]
+    )
+
     const onMouseMove = React.useCallback(
         ({ clientX: x, clientY: y }) => {
             if (!window) return
+
+            setFav(Math.round((x / window.innerHeight) * 5))
 
             const yPosition =
                 (y + window.scrollY - window.innerHeight / 2) /
@@ -173,7 +194,15 @@ const Eye = () => {
                 rotation: [yPosition, xPosition, 0],
             })
         },
-        [set, setTopLid, setBottomLid, bottomLidClosed, topLidClosed, lidOpen]
+        [
+            set,
+            setFav,
+            setTopLid,
+            setBottomLid,
+            bottomLidClosed,
+            topLidClosed,
+            lidOpen,
+        ]
     )
 
     // const debugRef = React.useRef(null)

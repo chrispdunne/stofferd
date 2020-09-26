@@ -186,7 +186,9 @@ const Work = ({ images, subtitle, title }: Props) => {
                 tl.to(spot, { duration: 1, css: { opacity: 0 } }, i)
             }
         })
-        console.log(tl.duration())
+        // console.log(tl.duration())
+        tl.scrollTrigger.refresh()
+        // console.log({ tl })
         return () => {}
     }, [tl, workImages])
 

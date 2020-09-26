@@ -178,7 +178,7 @@ const Home = () => {
         window.localStorage.setItem("loggedin", "true")
     }, [_setLoggedIn])
     React.useEffect(() => {
-        if (window.localStorage.getItem("loggedin")) setLoggedIn(true)
+        if (window.localStorage.getItem("loggedin")) setLoggedIn()
     }, [setLoggedIn])
 
     const [tl, setTl] = React.useState<any>(null)
@@ -186,26 +186,22 @@ const Home = () => {
         setTl(
             gsap.timeline({
                 scrollTrigger: {
-                    // trigger: ".nav.main",
-                    // toggleClass: "p0000",
-                    // start: 500 + " " + navBottom, // trg | scrl
-                    // end: 500 + " " + navTop, //trg | scrl
                     scrub: true,
                 },
-                // opacity: 0.2,
-                // x: 20,
             })
         )
     }, [])
 
     if (tl) {
-        const nav = document.querySelector(".nav.main")
+        const nav: HTMLDivElement | null = document.querySelector(".nav.main")
         const navTop = nav ? nav.offsetTop - nav.offsetHeight / 2 : 0
-        const navLinks = document.querySelectorAll(".nav-link a")
+        const navLinks: NodeListOf<HTMLAnchorElement> = document.querySelectorAll(
+            ".nav-link a"
+        )
         const sections = document.querySelectorAll(".home-section")
 
-        navLinks.forEach((link) => {
-            const linkHeight = link.offsetHeight
+        navLinks.forEach((link: HTMLAnchorElement) => {
+            const linkHeight = link ? link.offsetHeight : 0
             const linkBottom = link ? link.offsetTop + link.offsetHeight / 2 : 0
             const linkTop = link ? link.offsetTop - link.offsetHeight / 2 : 0
             sections.forEach((section, i) => {
@@ -253,7 +249,12 @@ const Home = () => {
                     Stoffer D - React, WordPress, TypeScript Developer
                 </title>
                 <link rel="canonical" href="https://stofferd.com" />
-                <link rel="shortcut icon" type="image/png" href={favicon} />
+                <link
+                    id="fav"
+                    rel="shortcut icon"
+                    type="image/png"
+                    href={favicon}
+                />
             </Helmet>
             <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
             <Nav />

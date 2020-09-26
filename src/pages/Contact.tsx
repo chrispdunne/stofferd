@@ -2,6 +2,8 @@ import React from "react"
 import Nav from "../components/Nav"
 import ContactForm from "../components/ContactForm"
 import styled from "styled-components"
+import { Helmet } from "react-helmet"
+import favicon from "../img/favicon.png"
 
 const ContactPage = styled.main`
     background: #000;
@@ -31,11 +33,21 @@ const ContactPage = styled.main`
 
 const Contact = () => {
     return (
-        <ContactPage>
-            <Nav />
-            <h1>Contact</h1>
-            <ContactForm />
-        </ContactPage>
+        <>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>
+                    Stoffer D - React, WordPress, TypeScript Developer
+                </title>
+                <link rel="canonical" href="https://stofferd.com" />
+                <link rel="shortcut icon" type="image/png" href={favicon} />
+            </Helmet>
+            <ContactPage>
+                <Nav />
+                <h1>Contact</h1>
+                <ContactForm />
+            </ContactPage>
+        </>
     )
 }
 
