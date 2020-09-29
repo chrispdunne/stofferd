@@ -187,6 +187,7 @@ const Home = () => {
             gsap.timeline({
                 scrollTrigger: {
                     scrub: true,
+                    invalidateOnRefresh: true,
                 },
             })
         )
@@ -211,28 +212,34 @@ const Home = () => {
                     { color: i % 2 ? "#000" : "#fff" },
                     {
                         scrollTrigger: {
-                            trigger: link,
-                            // if you set first param to 0 it still adds the top offset of nav
-                            start:
-                                i * window.innerHeight +
-                                window.innerHeight -
-                                window.scrollY -
-                                navTop -
-                                linkTop -
-                                linkHeight / 2 +
-                                " " +
-                                (linkBottom + navTop + linkHeight / 2 - 10), // trg | scrl
-                            end:
-                                i * window.innerHeight +
-                                window.innerHeight -
-                                window.scrollY -
-                                navTop -
-                                linkTop -
-                                linkHeight / 2 +
-                                " " +
-                                (linkTop + navTop + linkHeight / 2 + 10), //trg | scrl
                             scrub: true,
-                            // markers: true,
+                            invalidateOnRefresh: true,
+                            trigger: section,
+                            pinReparent: true,
+                            // if you set first param to 0 it still adds the top offset of nav
+                            start: "top bottom",
+                            // () =>
+                            //     i * window.innerHeight +
+                            //     window.innerHeight -
+                            //     window.scrollY -
+                            //     navTop -
+                            //     linkTop -
+                            //     linkHeight / 2 +
+                            //     " " +
+                            //     (linkBottom + navTop + linkHeight / 2 - 10), // trg | scrl
+                            end: "bottom bottom",
+                            // () =>
+                            //     i * window.innerHeight +
+                            //     window.innerHeight -
+                            //     window.scrollY -
+                            //     navTop -
+                            //     linkTop -
+                            //     linkHeight / 2 +
+                            //     " " +
+                            //     (linkTop + navTop + linkHeight / 2 + 10), //trg | scrl
+
+                            // scrub: true,
+                            markers: true,
                         },
                         color: i % 2 ? "#fff" : "#000",
                     }
