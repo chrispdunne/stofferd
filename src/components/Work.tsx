@@ -6,8 +6,13 @@ import ScrollTrigger from "gsap/ScrollTrigger"
 
 gsap.registerPlugin(ScrollTrigger)
 
+type WorkImg = {
+    src: string
+    caption?: string
+}
+
 type Props = {
-    images: string[]
+    images: WorkImg[]
     subtitle: string
     title: string
 }
@@ -23,6 +28,10 @@ const WorkPage = styled.div`
         h3 {
             margin: 0.5rem 0;
         }
+    }
+    .subtitle {
+        max-width: calc(100% - 20rem);
+        white-space: pre-wrap;
     }
     .work-images {
         position: fixed;
@@ -45,12 +54,17 @@ const WorkPage = styled.div`
         top: 50%;
         transform: translateY(-50%);
         left: 10rem;
-        width: calc(100% - 30rem);
+        max-width: calc(100% - 30rem);
+        max-height: calc(100vh - 30rem);
         background-size: cover;
         background-position: top left;
         background-repeat: no-repeat;
     }
-
+    .caption {
+        color: #fff;
+        top: 20rem;
+        right: 20rem;
+    }
     .height-section {
         height: 100vh;
     }
@@ -136,7 +150,7 @@ const Work = ({ images, subtitle, title }: Props) => {
     // })
 
     const getNextPrev = React.useCallback(() => {
-        if (!tl) return
+        if (!tl) return { prog: 0, prev: 0, next: 0 }
         const prog = tl.progress()
         const progSection = prog * (images.length - 1)
         const floored = Math.floor(progSection)
@@ -192,23 +206,27 @@ const Work = ({ images, subtitle, title }: Props) => {
         return () => {}
     }, [tl, workImages])
 
-    const scrollToSection = React.useCallback((destination: number) => {
-        const html = document.querySelector("html")
-        if (html) {
-            html.scrollTo({
-                left: 0,
-                top: (html.offsetHeight / images.length) * destination,
-                behavior: "smooth",
-            })
-        }
-    }, [])
+    const scrollToSection = React.useCallback(
+        (destination: number) => {
+            if (!destination) return
+            const html = document.querySelector("html")
+            if (html) {
+                html.scrollTo({
+                    left: 0,
+                    top: (html.offsetHeight / images.length) * destination,
+                    behavior: "smooth",
+                })
+            }
+        },
+        [images]
+    )
 
     return (
         <WorkPage>
             <Nav />
             <div className="title">
                 <h1>{title}</h1>
-                <h3>{subtitle}</h3>
+                <p className="subtitle">{subtitle}</p>
             </div>
             <div ref={workImages} className="work-images">
                 {images.map((img, i) => {
@@ -216,9 +234,10 @@ const Work = ({ images, subtitle, title }: Props) => {
                         <div key={i} className="work-image">
                             <img
                                 className="img"
-                                src={img}
+                                src={img.src}
                                 alt="work screenshot"
                             />
+                            <div className="caption">{img.caption}</div>
                         </div>
                     )
                 })}

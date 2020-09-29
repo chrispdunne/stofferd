@@ -28,6 +28,7 @@ import fav2 from "../img/favicon-2.png"
 import fav3 from "../img/favicon-3.png"
 import fav4 from "../img/favicon-4.png"
 import fav5 from "../img/favicon-5.png"
+import fav6 from "../img/favicon-6.png"
 
 extend({
     CircleBufferGeometry,
@@ -152,24 +153,27 @@ const Eye = () => {
     ])
 
     const favX = React.useRef(0)
-    const favicons = { fav1, fav2, fav3, fav4, fav5 }
+
     const setFav = React.useCallback(
         (newFavX) => {
             if (newFavX === favX.current) return
             const fav = document.getElementById("fav")
-            console.log({ fav })
-            fav.href = favicons["fav" + newFavX + 1]
+            if (newFavX <= 1) fav.href = fav1
+            if (newFavX > 1 && newFavX <= 2) fav.href = fav2
+            if (newFavX > 2 && newFavX <= 3) fav.href = fav3
+            if (newFavX > 3 && newFavX <= 4) fav.href = fav4
+            if (newFavX > 4 && newFavX <= 5) fav.href = fav5
+            if (newFavX > 5) fav.href = fav6
             favX.current = newFavX
-            console.log("updating!!!")
         },
-        [favicons, favX]
+        [favX]
     )
 
     const onMouseMove = React.useCallback(
         ({ clientX: x, clientY: y }) => {
             if (!window) return
 
-            setFav(Math.round((x / window.innerHeight) * 5))
+            setFav((x / window.innerHeight) * 4.2)
 
             const yPosition =
                 (y + window.scrollY - window.innerHeight / 2) /
@@ -284,7 +288,7 @@ const Eye = () => {
                 onClick={onClick}
                 style={{ background: "#000" }}
             >
-                <ambientLight intensity={0.8} color="#fff" />
+                <ambientLight intensity={2} color="#fff" />
 
                 <a.group rotation={rotation}>
                     <mesh>
@@ -347,7 +351,7 @@ const Eye = () => {
                         attach="geometry"
                         args={[1, 32, 32, 1.6, 3]}
                     />
-                    <meshLambertMaterial attach="material" color="#555" />
+                    <meshLambertMaterial attach="material" color="#666" />
                 </a.mesh>
 
                 <a.mesh position={[0, 0, 0]} rotation={bottomLidRotation}>
@@ -355,7 +359,7 @@ const Eye = () => {
                         attach="geometry"
                         args={[1, 32, 32, 1.6, 3]}
                     />
-                    <meshLambertMaterial attach="material" color="#444" />
+                    <meshLambertMaterial attach="material" color="#5a5a5a" />
                 </a.mesh>
 
                 <Effect />
