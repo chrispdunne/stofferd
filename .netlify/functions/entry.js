@@ -5,6 +5,10 @@ exports.handler = async (event, context, callback) => {
 
     callback(null, {
         statusCode: 200,
-        body: "match: " + pwords + " " + btoa(event.body),
+        body:
+            "match: " +
+            pwords +
+            " " +
+            Buffer.from(event.body, "base64").toString(),
     })
 }
