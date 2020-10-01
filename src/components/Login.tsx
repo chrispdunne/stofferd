@@ -41,8 +41,13 @@ const LoginBox = styled.div`
 const Login = ({ loggedIn = false, setLoggedIn }: Props) => {
     const [typed, setTyped] = React.useState("")
     const handleChange = React.useCallback(
-        (e) => {
+        async (e) => {
             setTyped(e.target.value)
+
+            if (window) {
+                const res = await window.fetch("/.netlify/functions/entry")
+                console.log({ res })
+            }
 
             if (
                 process.env.GATSBY_PASSWORDS &&
