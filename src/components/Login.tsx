@@ -56,13 +56,13 @@ const Login = ({ loggedIn = false, setLoggedIn }: Props) => {
 
             if (window) {
                 ;(async () => {
-                    const headers = new Headers()
-                    headers.append("Content-Type", "multipart/form-data")
-                    const formData = new FormData()
-                    formData.append("typed", typedVal)
+                    // const headers = new Headers()
+                    // headers.append("Content-Type", "multipart/form-data")
+                    // const formData = new FormData()
+                    // formData.append("typed", typedVal)
                     const res = await window.fetch(
                         "/.netlify/functions/entry",
-                        { method: "POST", body: formData, headers }
+                        { method: "POST", body: typedVal }
                     )
                     console.log({ res })
                 })()
