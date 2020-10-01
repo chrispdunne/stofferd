@@ -61,7 +61,9 @@ const Login = ({ loggedIn = false, setLoggedIn }: Props) => {
                         }
                     )
                     const body = await res.text()
-                    console.dir(body)
+                    if (body === "true") {
+                        setLoggedIn()
+                    }
                 })()
             }
         },
