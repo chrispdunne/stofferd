@@ -53,10 +53,11 @@ const Login = ({ loggedIn = false, setLoggedIn }: Props) => {
             // ) {
             // setLoggedIn()
             // }
-            const headers = new Headers()
-            headers.append("Content-Type", "multipart/form-data")
+
             if (window) {
                 ;(async () => {
+                    const headers = new Headers()
+                    headers.append("Content-Type", "multipart/form-data")
                     const formData = new FormData()
                     formData.append("typed", typedVal)
                     const res = await window.fetch(
