@@ -42,22 +42,25 @@ const Login = ({ loggedIn = false, setLoggedIn }: Props) => {
     const [typed, setTyped] = React.useState("")
     const handleChange = React.useCallback(
         (e) => {
-            setTyped(e.target.value)
+            const typedVal = e.target.value.toLowerCase()
+            setTyped(typedVal)
 
-            if (
-                process.env.GATSBY_PASSWORDS &&
-                process.env.GATSBY_PASSWORDS.split(" ").includes(
-                    e.target.value.toLowerCase()
-                )
-            ) {
-                setLoggedIn()
-            }
+            // if (
+            //     process.env.GATSBY_PASSWORDS &&
+            //     process.env.GATSBY_PASSWORDS.split(" ").includes(
+            //         e.target.value.toLowerCase()
+            //     )
+            // ) {
+            // setLoggedIn()
+            // }
 
             if (window) {
                 ;(async () => {
+                    const formData = new FormData()
+                    formData.append("typed", typedVal)
                     const res = await window.fetch(
                         "/.netlify/functions/entry",
-                        { method: "POST" }
+                        { method: "POST", body: formData }
                     )
                     console.log({ res })
                 })()
