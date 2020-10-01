@@ -62,7 +62,16 @@ const Login = ({ loggedIn = false, setLoggedIn }: Props) => {
                     // formData.append("typed", typedVal)
                     const res = await window.fetch(
                         "/.netlify/functions/entry",
-                        { method: "POST", body: typedVal }
+                        {
+                            method: "POST",
+                            headers: {
+                                Accept: "application/json",
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                typed: typedVal,
+                            }),
+                        }
                     )
                     console.log({ res })
                 })()
