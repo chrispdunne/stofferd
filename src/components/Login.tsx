@@ -45,21 +45,8 @@ const Login = ({ loggedIn = false, setLoggedIn }: Props) => {
             const typedVal = e.target.value.toLowerCase()
             setTyped(typedVal)
 
-            // if (
-            //     process.env.GATSBY_PASSWORDS &&
-            //     process.env.GATSBY_PASSWORDS.split(" ").includes(
-            //         e.target.value.toLowerCase()
-            //     )
-            // ) {
-            // setLoggedIn()
-            // }
-
             if (window) {
                 ;(async () => {
-                    // const headers = new Headers()
-                    // headers.append("Content-Type", "multipart/form-data")
-                    // const formData = new FormData()
-                    // formData.append("typed", typedVal)
                     const res = await window.fetch(
                         "/.netlify/functions/entry",
                         {
@@ -73,7 +60,9 @@ const Login = ({ loggedIn = false, setLoggedIn }: Props) => {
                             }),
                         }
                     )
-                    console.log({ res })
+
+                    console.dir(res)
+                    console.log(res.body)
                 })()
             }
         },
