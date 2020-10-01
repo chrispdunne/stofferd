@@ -60,9 +60,8 @@ const Login = ({ loggedIn = false, setLoggedIn }: Props) => {
                             }),
                         }
                     )
-
-                    console.dir(res)
-                    console.log(res.body)
+                    const body = await res.text()
+                    console.dir(body)
                 })()
             }
         },
