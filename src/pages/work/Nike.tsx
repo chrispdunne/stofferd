@@ -7,7 +7,7 @@ import Work from "../../components/Work"
 const Nike = () => {
     return (
         <Work
-            images={[nike1, nike2, nike3]}
+            images={[{ src: nike1 }, { src: nike2 }, { src: nike3 }]}
             subtitle="WordPress, Vanilla JS"
             title="NIKE x LONDON YOUTH GAMES"
         />
