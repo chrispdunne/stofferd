@@ -6,7 +6,7 @@ exports.handler = async (event, context, callback) => {
 
     callback(null, {
         statusCode: 200,
-        body: "match: " + pwords + " " + body,
-        raw: event.body,
+        // body: "match: " + pwords + " " + body,
+        body: event.body,
     })
 }
