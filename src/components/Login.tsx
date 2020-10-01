@@ -41,21 +41,27 @@ const LoginBox = styled.div`
 const Login = ({ loggedIn = false, setLoggedIn }: Props) => {
     const [typed, setTyped] = React.useState("")
     const handleChange = React.useCallback(
-        async (e) => {
+        (e) => {
             setTyped(e.target.value)
-
-            if (window) {
-                const res = await window.fetch("/.netlify/functions/entry")
-                console.log({ res })
-            }
 
             if (
                 process.env.GATSBY_PASSWORDS &&
                 process.env.GATSBY_PASSWORDS.split(" ").includes(
                     e.target.value.toLowerCase()
                 )
-            )
+            ) {
                 setLoggedIn()
+            }
+
+            if (window) {
+                ;(async () => {
+                    const res = await window.fetch(
+                        "/.netlify/functions/entry",
+                        { method: "POST" }
+                    )
+                    console.log({ res })
+                })()
+            }
         },
         [setLoggedIn, setTyped]
     )
