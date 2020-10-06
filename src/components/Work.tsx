@@ -49,21 +49,47 @@ const WorkPage = styled.div`
         opacity: 0.1;
         position: absolute;
     }
-    .img {
+    .work-container {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
         left: 10rem;
-        max-width: calc(100% - 30rem);
+        max-width: calc(100% - 48rem);
         max-height: calc(100vh - 30rem);
         background-size: cover;
         background-position: top left;
         background-repeat: no-repeat;
     }
+    .img {
+        max-height: 50vh;
+        display: block;
+    }
     .caption {
-        color: #fff;
-        top: 20rem;
-        right: 20rem;
+        color: #000;
+        top: 50%;
+        width: auto;
+        text-transform: capitalize;
+        background: #fff;
+        padding: 10px 20px;
+        margin: 40px 0 0;
+        font-size: 0.9rem;
+        position: relative;
+        display: inline-block;
+        &:before {
+            content: "";
+            display: block;
+            width: 5px;
+            height: 5px;
+            position: absolute;
+            top: -10px;
+            left: -11px;
+            border: 11px solid #fff;
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+            border-top-color: transparent;
+            transform: rotate(135deg);
+            box-sizing: border-box;
+        }
     }
     .height-section {
         height: 100vh;
@@ -134,20 +160,10 @@ const Work = ({ images, subtitle, title }: Props) => {
                     start: "0px 1px", // trg | scrl
                     end: "bottom bottom", //trg | scrl
                     scrub: true,
-                    // markers: true,
                 },
             })
         )
     }, [])
-    // const tl = gsap.timeline({
-    //     scrollTrigger: {
-    //         trigger: ".trigger",
-    //         start: "0px 1px", // trg | scrl
-    //         end: "bottom bottom", //trg | scrl
-    //         scrub: true,
-    //         // markers: true,
-    //     },
-    // })
 
     const getNextPrev = React.useCallback(() => {
         if (!tl) return { prog: 0, prev: 0, next: 0 }
@@ -163,20 +179,22 @@ const Work = ({ images, subtitle, title }: Props) => {
 
     React.useEffect(() => {
         if (!tl) return
-        const imageEls: Element[] = []
-        if (workImages && workImages.current !== null && workImages.current) {
-            imageEls.push(...workImages.current.querySelectorAll(".work-image"))
-        }
-        const spotEls: Element[] = []
-        if (spots && spots.current !== null && workImages.current) {
-            spotEls.push(...spots.current.querySelectorAll(".spot"))
-        }
+
+        const imageEls: Element[] =
+            workImages && workImages.current
+                ? [...workImages.current.querySelectorAll(".work-image")]
+                : []
+
+        const spotEls: Element[] =
+            spots && spots.current !== null && workImages.current
+                ? [...spots.current.querySelectorAll(".spot")]
+                : []
 
         imageEls.forEach((img, i) => {
             // setup
             const spot = spotEls[i]
             if (i === 0) {
-                tl.set(img, { scale: 1, opacity: 1, x: "-100%" }, 0)
+                tl.set(img, { opacity: 1, x: "-100%" }, 0)
             } else {
                 tl.set(spot, { css: { opacity: 0 } }, 0)
             }
@@ -200,15 +218,13 @@ const Work = ({ images, subtitle, title }: Props) => {
                 tl.to(spot, { duration: 1, css: { opacity: 0 } }, i)
             }
         })
-        // console.log(tl.duration())
         tl.scrollTrigger.refresh()
-        // console.log({ tl })
         return () => {}
-    }, [tl, workImages])
+    }, [tl, images, workImages])
 
     const scrollToSection = React.useCallback(
         (destination: number) => {
-            if (!destination) return
+            if (!destination && destination !== 0) return
             const html = document.querySelector("html")
             if (html) {
                 html.scrollTo({
@@ -232,12 +248,14 @@ const Work = ({ images, subtitle, title }: Props) => {
                 {images.map((img, i) => {
                     return (
                         <div key={i} className="work-image">
-                            <img
-                                className="img"
-                                src={img.src}
-                                alt="work screenshot"
-                            />
-                            <div className="caption">{img.caption}</div>
+                            <div className="work-container">
+                                <img
+                                    className="img"
+                                    src={img.src}
+                                    alt="work screenshot"
+                                />
+                                <div className="caption">{img.caption}</div>
+                            </div>
                         </div>
                     )
                 })}

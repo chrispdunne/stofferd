@@ -37,17 +37,30 @@ const Menu = ({ className = "", mobNavVis }: Props) => {
             <ul className={className + " nav"}>
                 <li id="about" className="nav-link">
                     <Link to="/about">
-                        <span>About</span>
+                        <span>A</span>
+                        <span>b</span>
+                        <span>o</span>
+                        <span>u</span>
+                        <span>t</span>
                     </Link>
                 </li>
                 <li id="work" className="nav-link">
                     <Link to="/work">
-                        <span>Work</span>
+                        <span>W</span>
+                        <span>o</span>
+                        <span>r</span>
+                        <span>k</span>
                     </Link>
                 </li>
                 <li id="contact" className="nav-link">
                     <Link to="/contact">
-                        <span>Contact</span>
+                        <span>C</span>
+                        <span>o</span>
+                        <span>n</span>
+                        <span>t</span>
+                        <span>a</span>
+                        <span>c</span>
+                        <span>t</span>
                     </Link>
                 </li>
             </ul>

@@ -17,6 +17,18 @@ import ScrollTrigger from "gsap/ScrollTrigger"
 
 gsap.registerPlugin(ScrollTrigger)
 
+const Chevron = styled.div`
+    position: absolute;
+    bottom: 5vh;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 3px solid #fff;
+    border-top-color: transparent;
+    border-left-color: transparent;
+`
+
 const LoadingDiv = styled.div`
     width: 100vw;
     height: 100vh;
@@ -239,7 +251,7 @@ const Home = () => {
                             //     (linkTop + navTop + linkHeight / 2 + 10), //trg | scrl
 
                             // scrub: true,
-                            markers: true,
+                            // markers: true,
                         },
                         color: i % 2 ? "#fff" : "#000",
                     }
@@ -275,6 +287,7 @@ const Home = () => {
                         </Link>
                     </Caption>
                     <LoadableEye />
+                    <Chevron />
                 </Container>
 
                 <HomeSection

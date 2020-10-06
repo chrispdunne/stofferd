@@ -37,21 +37,13 @@ const StyledNav = styled.div`
         }
     }
     .nav-link {
-        transition: transform 0.25s ease-in-out;
-
         span {
-            border-image-source: url(${arrows});
-            border-image-slice: 0 0 0 0;
-            border-image-width: 8px;
-            border-image-outset: 0;
-            border-image-repeat: round;
-            border-style: solid;
-            border-width: 8px;
-            background-size: 0;
+            display: inline-block;
+            transition: all 0.25s ease-in-out;
         }
         &:hover {
             span {
-                border-image-slice: 0 0 8 0;
+                transform: rotate(180deg);
             }
         }
     }
