@@ -20,7 +20,7 @@ const Nike = () => {
                 },
             ]}
             subtitle="WordPress, Vanilla JS"
-            title="NIKE x LONDON YOUTH GAMES"
+            title="NIKE &amp; LONDON YOUTH GAMES"
         />
     )
 }

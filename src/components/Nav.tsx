@@ -1,18 +1,21 @@
 import React from "react"
-import { Link } from "gatsby"
 import styled from "styled-components"
 import classNames from "classnames"
 import "../index.css"
 
-import Logo from "./Logo"
 import LogoToggle from "./LogoToggle"
 import Menu from "./Menu"
-// import Pixelation from "../components/Pixelation"
-// import pixelate from "../img/pixelate.gif"
-// import arrows from "../img/arrow.gif"
-import arrows from "../img/arrow-border.gif"
+
+type Props = {
+    fixed?: boolean
+}
 
 const StyledNav = styled.div`
+    &.fixed {
+        position: fixed;
+        width: 100%;
+        z-index: 1;
+    }
     ul {
         position: fixed;
         z-index: 2;
@@ -78,7 +81,7 @@ const StyledNav = styled.div`
     /* 979px */
     @media only screen and (max-width: 61.1875em) {
         ul.main {
-            left: -100vw;
+            left: -120vw;
             transition: left 0.3s ease-in;
             z-index: 4;
             max-width: 100vw;
@@ -90,6 +93,7 @@ const StyledNav = styled.div`
             transform: translateY(-50%);
         }
         &.active {
+            z-index: 4;
             ul.main {
                 left: 0;
             }
@@ -101,7 +105,7 @@ const StyledNav = styled.div`
     }
 `
 
-function Nav() {
+function Nav({ fixed }: Props) {
     let scrollTop = 0
     const [scrollingUp, setScrollingUp] = React.useState(false)
     const [mobNavVis, setMobNavVis] = React.useState(false)
@@ -124,7 +128,10 @@ function Nav() {
     }, [])
 
     return (
-        <StyledNav id="nav" className={mobNavVis ? "active" : ""}>
+        <StyledNav
+            id="nav"
+            className={classNames({ active: mobNavVis, fixed })}
+        >
             <LogoToggle mobNavVis={mobNavVis} setMobNavVis={setMobNavVis} />
             {/* <LogoToggle
                 mobNavVis={mobNavVis}

@@ -21,8 +21,6 @@ const WorkPage = styled.div`
     background: #000;
     .title {
         position: fixed;
-        top: 2.5em;
-        left: 9.7rem;
         color: #fff;
         h1,
         h3 {
@@ -30,9 +28,43 @@ const WorkPage = styled.div`
         }
     }
     .subtitle {
-        max-width: calc(100% - 20rem);
         white-space: pre-wrap;
     }
+    /* 980px + big */
+    @media only screen and (min-width: 61.25em) {
+        .title {
+            top: 2.5em;
+            left: 9.7rem;
+        }
+        .subtitle {
+            max-width: calc(100% - 20rem);
+        }
+    }
+
+    /* < 979px small */
+    @media only screen and (max-width: 61.1875em) {
+        .title {
+            top: 4em;
+            padding: 0;
+            width: 100%;
+            height: calc(50vh - 4rem);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            h1 {
+                font-size: 1.5rem;
+                text-align: center;
+                width: 100%;
+                margin-top: 2rem;
+            }
+        }
+        .subtitle {
+            padding: 0 2rem;
+            width: calc(100% - 4rem);
+        }
+    }
+
     .work-images {
         position: fixed;
         width: 100vw;
@@ -52,8 +84,7 @@ const WorkPage = styled.div`
     .work-container {
         position: absolute;
         top: 50%;
-        transform: translateY(-50%);
-        left: 10rem;
+        /* transform: translateY(-50%); */
         max-width: calc(100% - 48rem);
         max-height: calc(100vh - 30rem);
         background-size: cover;
@@ -61,9 +92,31 @@ const WorkPage = styled.div`
         background-repeat: no-repeat;
     }
     .img {
+        max-width: 95vw;
         max-height: 50vh;
-        display: block;
     }
+    /* 980px + */
+    @media only screen and (min-width: 61.25em) {
+        .work-container {
+            left: 10rem;
+        }
+        .img {
+            max-width: 95vw;
+            max-height: 50vh;
+        }
+    }
+
+    /* < 979px */
+    @media only screen and (max-width: 61.1875em) {
+        .work-container {
+            left: 2rem;
+        }
+        .img {
+            max-width: 95vw;
+            max-height: calc(50vh - 7rem);
+        }
+    }
+
     .caption {
         color: #000;
         top: 50%;
@@ -91,6 +144,12 @@ const WorkPage = styled.div`
             box-sizing: border-box;
         }
     }
+    /* < 979px */
+    @media only screen and (max-width: 61.1875em) {
+        .caption {
+            width: calc(100vw - 6rem);
+        }
+    }
     .height-section {
         height: 100vh;
     }
@@ -105,9 +164,22 @@ const WorkPage = styled.div`
     }
     .spots {
         position: fixed;
-        left: 3rem;
         top: 50%;
         transform: translateY(-50%);
+        z-index: 1;
+    }
+    /* 980px + */
+    @media only screen and (min-width: 61.25em) {
+        .spots {
+            left: 3rem;
+        }
+    }
+
+    /* < 979px */
+    @media only screen and (max-width: 61.1875em) {
+        .spots {
+            left: 0.5rem;
+        }
     }
     .spot-container {
         width: 12px;
@@ -239,7 +311,7 @@ const Work = ({ images, subtitle, title }: Props) => {
 
     return (
         <WorkPage>
-            <Nav />
+            <Nav fixed={true} />
             <div className="title">
                 <h1>{title}</h1>
                 <p className="subtitle">{subtitle}</p>
