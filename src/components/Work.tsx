@@ -60,8 +60,8 @@ const WorkPage = styled.div`
             }
         }
         .subtitle {
-            padding: 0 2rem;
-            width: calc(100% - 4rem);
+            padding: 0 3rem;
+            width: calc(100% - 6rem);
         }
     }
 
@@ -109,10 +109,10 @@ const WorkPage = styled.div`
     /* < 979px */
     @media only screen and (max-width: 61.1875em) {
         .work-container {
-            left: 2rem;
+            left: 3rem;
         }
         .img {
-            max-width: 95vw;
+            max-width: calc(100vw - 6rem);
             max-height: calc(50vh - 7rem);
         }
     }
@@ -128,6 +128,7 @@ const WorkPage = styled.div`
         font-size: 0.9rem;
         position: relative;
         display: inline-block;
+        box-sizing: border-box;
         &:before {
             content: "";
             display: block;
@@ -144,10 +145,12 @@ const WorkPage = styled.div`
             box-sizing: border-box;
         }
     }
+
     /* < 979px */
     @media only screen and (max-width: 61.1875em) {
         .caption {
-            width: calc(100vw - 6rem);
+            max-width: calc(100vw - 6rem);
+            min-width: 12rem;
         }
     }
     .height-section {
@@ -178,7 +181,7 @@ const WorkPage = styled.div`
     /* < 979px */
     @media only screen and (max-width: 61.1875em) {
         .spots {
-            left: 0.5rem;
+            left: 1rem;
         }
     }
     .spot-container {

@@ -37,23 +37,7 @@ const Grid = styled.div`
     .empty {
         opacity: 0;
     }
-    &:hover {
-        .fill {
-            border: 0.5rem solid black;
-            box-sizing: border-box;
-            border-left-color: transparent;
-        }
-        /* background: #000; */
-        div {
-            /* box-shadow: none; */
-        }
-        .fill {
-            /* opacity: 0; */
-        }
-        .empty {
-            /* opacity: 1; */
-        }
-    }
+   
     /* 979px */
     @media only screen and (max-width: 61.1875em) {
         width: 3.0625rem;
@@ -64,6 +48,16 @@ const Grid = styled.div`
             height: 0.4375rem;
         }
     }
+    @media only screen and (min-width: 61.25em) {
+        &:hover {
+            .fill {
+                border: 0.5rem solid black;
+                box-sizing: border-box;
+                border-left-color: transparent;
+            }
+        }
+    }
+
 `
 
 const Logo = ({ background = "#fff" }) => {

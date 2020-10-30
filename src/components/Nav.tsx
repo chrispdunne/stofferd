@@ -28,15 +28,20 @@ const StyledNav = styled.div`
         text-align: right;
     }
     a {
-        /* color: red; */
         font-weight: bold;
         text-transform: uppercase;
         text-decoration: none;
         font-size: 20px;
         padding: 1rem 3rem;
         display: inline-block;
+        span {
+            color: #fff;
+        }
         &:visited {
             color: #fff;
+            span {
+                color: #fff;
+            }
         }
     }
     .nav-link {

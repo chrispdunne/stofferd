@@ -18,15 +18,6 @@ const WorkPage = styled.main`
         padding: 2rem 3rem;
         position: absolute;
     }
-    /* 979px small */
-    @media only screen and (max-width: 61.1875em) {
-        h1 {
-            top: 8rem;
-            text-align: center;
-            width: 100%;
-            padding: 0;
-        }
-    }
     .work-container {
         display: flex;
         align-items: center;
@@ -35,6 +26,9 @@ const WorkPage = styled.main`
         width: calc(100% - 10rem);
         z-index: 1;
         position: relative;
+        a {
+
+        }
     }
     .work-item {
         width: 8rem;
@@ -43,6 +37,24 @@ const WorkPage = styled.main`
         background-repeat: no-repeat;
         background-position: center center;
         margin: 1rem;
+    }
+     /* 979px small */
+     @media only screen and (max-width: 61.1875em) {
+        h1 {
+            top: 8rem;
+            text-align: center;
+            width: 100%;
+            padding: 0;
+        }
+ 
+        .work-container {
+            flex-direction: column;
+            width: 100vw;
+        }
+    }
+    /* 980px + BIG */
+    @media only screen and (min-width: 61.25em) {
+    
     }
 `
 
