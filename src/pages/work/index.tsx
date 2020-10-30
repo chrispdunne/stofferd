@@ -7,6 +7,7 @@ import nike from "../../img/nike-white.png"
 import ey from "../../img/ey.png"
 import firm from "../../img/firm-white.png"
 import { Link } from "gatsby"
+import Login from '../../components/Login';
 
 const WorkPage = styled.main`
     background: #000;
@@ -46,6 +47,14 @@ const WorkPage = styled.main`
 `
 
 const Work = () => {
+    const [loggedIn, _setLoggedIn] = React.useState(false)
+    const setLoggedIn = React.useCallback(() => {
+        _setLoggedIn(true)
+        window.localStorage.setItem("loggedin", "true")
+    }, [_setLoggedIn])
+    React.useEffect(() => {
+        if (window.localStorage.getItem("loggedin")) setLoggedIn()
+    }, [setLoggedIn])
     return (
         <>
             <Helmet>
@@ -56,6 +65,7 @@ const Work = () => {
                 <link rel="canonical" href="https://stofferd.com" />
                 <link rel="shortcut icon" type="image/png" href={favicon} />
             </Helmet>
+            <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
             <WorkPage>
                 <Nav />
                 <h1>Work</h1>

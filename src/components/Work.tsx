@@ -84,7 +84,6 @@ const WorkPage = styled.div`
     .work-container {
         position: absolute;
         top: 50%;
-        /* transform: translateY(-50%); */
         max-width: calc(100% - 48rem);
         max-height: calc(100vh - 30rem);
         background-size: cover;
@@ -99,6 +98,7 @@ const WorkPage = styled.div`
     @media only screen and (min-width: 61.25em) {
         .work-container {
             left: 10rem;
+            transform: translateY(-50%);
         }
         .img {
             max-width: 95vw;
