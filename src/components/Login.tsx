@@ -46,6 +46,10 @@ const Login = ({ loggedIn = false, setLoggedIn }: Props) => {
             setTyped(typedVal)
 
             if (window) {
+                if (process.env.NODE_ENV === "development" &&                     process.env.GATSBY_PASSWORDS && process.env.GATSBY_PASSWORDS.split(" ").includes(typedVal)
+                ) {
+                    setLoggedIn()
+                }
                 ;(async () => {
                     const res = await window.fetch(
                         "/.netlify/functions/entry",
