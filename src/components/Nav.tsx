@@ -34,7 +34,7 @@ const StyledNav = styled.div`
         font-size: 20px;
         padding: 1rem 3rem;
         display: inline-block;
-        span {
+        /* span {
             color: #fff;
         }
         &:visited {
@@ -42,7 +42,7 @@ const StyledNav = styled.div`
             span {
                 color: #fff;
             }
-        }
+        } */
     }
     .nav-link {
         span {
