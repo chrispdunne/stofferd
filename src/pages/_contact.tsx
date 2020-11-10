@@ -52,8 +52,9 @@ const Contact = () => {
                 <link rel="canonical" href="https://stofferd.com" />
                 <link rel="shortcut icon" type="image/png" href={favicon} />
             </Helmet>
-            <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
             <ContactPage>
+                <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+
                 <Nav />
                 <h1>Contact</h1>
                 <ContactForm />
