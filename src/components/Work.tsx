@@ -101,7 +101,7 @@ const WorkPage = styled.div`
             transform: translateY(-50%);
         }
         .img {
-            max-width: 95vw;
+            max-width: calc(100vw - 25rem);
             max-height: 50vh;
         }
     }

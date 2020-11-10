@@ -4,6 +4,7 @@ import ContactForm from "../components/ContactForm"
 import styled from "styled-components"
 import { Helmet } from "react-helmet"
 import favicon from "../img/favicon.png"
+import Login from "../components/Login"
 
 const ContactPage = styled.main`
     background: #000;
@@ -32,6 +33,15 @@ const ContactPage = styled.main`
 `
 
 const Contact = () => {
+    const [loggedIn, _setLoggedIn] = React.useState(false)
+    const setLoggedIn = React.useCallback(() => {
+        _setLoggedIn(true)
+        window.localStorage.setItem("loggedin", "true")
+    }, [_setLoggedIn])
+    React.useEffect(() => {
+        if (window.localStorage.getItem("loggedin")) setLoggedIn()
+    }, [setLoggedIn])
+
     return (
         <>
             <Helmet>
@@ -42,6 +52,7 @@ const Contact = () => {
                 <link rel="canonical" href="https://stofferd.com" />
                 <link rel="shortcut icon" type="image/png" href={favicon} />
             </Helmet>
+            <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
             <ContactPage>
                 <Nav />
                 <h1>Contact</h1>

@@ -27,6 +27,7 @@ const Chevron = styled.div`
     border: 3px solid #fff;
     border-top-color: transparent;
     border-left-color: transparent;
+    cursor: pointer;
 `
 
 const LoadingDiv = styled.div`
@@ -259,6 +260,14 @@ const Home = () => {
             })
         })
     }
+    const clickToScroll = React.useCallback(()=>{
+        if(!window) return
+        window.scrollTo({
+            left: 0,
+            top: window.innerHeight,
+            behavior: 'smooth'
+        });
+    },[]);
 
     return (
         <>
@@ -287,7 +296,7 @@ const Home = () => {
                         </Link>
                     </Caption>
                     <LoadableEye />
-                    <Chevron />
+                    <Chevron onClick={clickToScroll} />
                 </Container>
 
                 <HomeSection
