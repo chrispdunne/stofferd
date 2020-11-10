@@ -33,14 +33,14 @@ const ContactPage = styled.main`
 `
 
 const Contact = () => {
-    // const [loggedIn, _setLoggedIn] = React.useState(false)
-    // const setLoggedIn = React.useCallback(() => {
-    //     _setLoggedIn(true)
-    //     window.localStorage.setItem("loggedin", "true")
-    // }, [_setLoggedIn])
-    // React.useEffect(() => {
-    //     if (window.localStorage.getItem("loggedin")) setLoggedIn()
-    // }, [setLoggedIn])
+    const [loggedIn, _setLoggedIn] = React.useState(false)
+    const setLoggedIn = React.useCallback(() => {
+        _setLoggedIn(true)
+        window.localStorage.setItem("loggedin", "true")
+    }, [_setLoggedIn])
+    React.useEffect(() => {
+        if (window.localStorage.getItem("loggedin")) setLoggedIn()
+    }, [setLoggedIn])
 
     return (
         <>
@@ -55,8 +55,7 @@ const Contact = () => {
             <Nav white />
 
             <ContactPage>
-                {/* <Login loggedIn=/{loggedIn} setLoggedIn={setLoggedIn} /> */}
-
+                <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
                 <h1>Contact</h1>
                 <ContactForm />
             </ContactPage>
