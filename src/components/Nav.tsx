@@ -8,6 +8,7 @@ import Menu from "./Menu"
 
 type Props = {
     fixed?: boolean
+    white?: boolean
 }
 
 const StyledNav = styled.div`
@@ -15,6 +16,19 @@ const StyledNav = styled.div`
         position: fixed;
         width: 100%;
         z-index: 1;
+    }
+    &.white {
+        a {
+            span {
+                color: #fff;
+            }
+            &:visited {
+                color: #fff;
+                span {
+                    color: #fff;
+                }
+            }
+        }
     }
     ul {
         position: fixed;
@@ -34,15 +48,6 @@ const StyledNav = styled.div`
         font-size: 20px;
         padding: 1rem 3rem;
         display: inline-block;
-        /* span {
-            color: #fff;
-        }
-        &:visited {
-            color: #fff;
-            span {
-                color: #fff;
-            }
-        } */
     }
     .nav-link {
         span {
@@ -110,7 +115,7 @@ const StyledNav = styled.div`
     }
 `
 
-function Nav({ fixed }: Props) {
+function Nav({ fixed, white }: Props) {
     let scrollTop = 0
     const [scrollingUp, setScrollingUp] = React.useState(false)
     const [mobNavVis, setMobNavVis] = React.useState(false)
@@ -135,7 +140,7 @@ function Nav({ fixed }: Props) {
     return (
         <StyledNav
             id="nav"
-            className={classNames({ active: mobNavVis, fixed })}
+            className={classNames({ active: mobNavVis, fixed, white })}
         >
             <LogoToggle mobNavVis={mobNavVis} setMobNavVis={setMobNavVis} />
             {/* <LogoToggle

@@ -176,21 +176,22 @@ const About = () => {
             <Helmet>
                 <meta charSet="utf-8" />
                 <title>
-                    Stoffer D - React, WordPress, TypeScript Developer
+                    About Stoffer D - React, WordPress, TypeScript Developer
                 </title>
                 <link rel="canonical" href="https://stofferd.com" />
                 <link rel="shortcut icon" type="image/png" href={favicon} />
             </Helmet>
             <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
 
-            <Nav />
+            <Nav white />
 
             <AboutPage>
                 <h1>About Stoffer</h1>
                 <div className="timeline" ref={timeline}>
-                    {sections.map((section) => {
+                    {sections.map((section, i) => {
                         return (
                             <TimelineSection
+                                key={i}
                                 className="timeline-section"
                                 date={section.date}
                                 where={section.where}

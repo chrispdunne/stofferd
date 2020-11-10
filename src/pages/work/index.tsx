@@ -7,7 +7,7 @@ import nike from "../../img/nike-white.png"
 import ey from "../../img/ey.png"
 import firm from "../../img/firm-white.png"
 import { Link } from "gatsby"
-import Login from '../../components/Login';
+import Login from "../../components/Login"
 
 const WorkPage = styled.main`
     background: #000;
@@ -27,7 +27,6 @@ const WorkPage = styled.main`
         z-index: 1;
         position: relative;
         a {
-
         }
     }
     .work-item {
@@ -38,15 +37,15 @@ const WorkPage = styled.main`
         background-position: center center;
         margin: 1rem;
     }
-     /* 979px small */
-     @media only screen and (max-width: 61.1875em) {
+    /* 979px small */
+    @media only screen and (max-width: 61.1875em) {
         h1 {
             top: 8rem;
             text-align: center;
             width: 100%;
             padding: 0;
         }
- 
+
         .work-container {
             flex-direction: column;
             width: 100vw;
@@ -54,7 +53,6 @@ const WorkPage = styled.main`
     }
     /* 980px + BIG */
     @media only screen and (min-width: 61.25em) {
-    
     }
 `
 
@@ -79,7 +77,7 @@ const Work = () => {
             </Helmet>
             <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
             <WorkPage>
-                <Nav />
+                <Nav white />
                 <h1>Work</h1>
                 <div className="work-container">
                     <Link to="/work/nike">
