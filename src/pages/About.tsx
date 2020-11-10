@@ -97,7 +97,7 @@ const About = () => {
                 scrollTrigger: {
                     scrub: true,
                     invalidateOnRefresh: true,
-                    markers: true,
+                    // markers: true,
                 },
             })
         )

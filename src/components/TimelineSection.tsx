@@ -69,6 +69,9 @@ const StyledSection = styled.div`
         flex-direction: column;
         justify-content: center;
     }
+    h2 {
+        margin: 0.5rem 0;
+    }
     .where {
         font-weight: 900;
     }
