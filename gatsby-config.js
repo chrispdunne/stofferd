@@ -1,4 +1,7 @@
 module.exports = {
+    siteMetadata: {
+        siteUrl: `https://stofferd.com`,
+    },
     plugins: [
         `gatsby-plugin-styled-components`,
         `gatsby-plugin-react-helmet`,
