@@ -143,13 +143,6 @@ function Nav({ fixed, white }: Props) {
             className={classNames({ active: mobNavVis, fixed, white })}
         >
             <LogoToggle mobNavVis={mobNavVis} setMobNavVis={setMobNavVis} />
-            {/* <LogoToggle
-                mobNavVis={mobNavVis}
-                setMobNavVis={setMobNavVis}
-                className={classNames("fixed", {
-                    visible: scrollingUp,
-                })}
-            /> */}
 
             <Menu className="main" mobNavVis={mobNavVis} />
         </StyledNav>

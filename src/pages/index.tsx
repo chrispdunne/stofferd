@@ -260,21 +260,22 @@ const Home = () => {
             })
         })
     }
-    const clickToScroll = React.useCallback(()=>{
-        if(!window) return
+    const clickToScroll = React.useCallback(() => {
+        if (!window) return
         window.scrollTo({
             left: 0,
             top: window.innerHeight,
-            behavior: 'smooth'
-        });
-    },[]);
+            behavior: "smooth",
+        })
+    }, [])
 
     return (
         <>
             <Helmet>
                 <meta charSet="utf-8" />
                 <title>
-                    Stoffer D - React, WordPress, TypeScript Developer
+                    {loggedIn &&
+                        "Stoffer D - React, WordPress, TypeScript Developer"}
                 </title>
                 <link rel="canonical" href="https://stofferd.com" />
                 <link
@@ -289,8 +290,12 @@ const Home = () => {
             <SectionContainer>
                 <Container>
                     <Caption>
-                        <h3>REACT, WORDPRESS, TYPESCRIPT</h3>
-                        <h1>DEVELOPER</h1>
+                        {loggedIn && (
+                            <>
+                                <h3>REACT, WORDPRESS, TYPESCRIPT</h3>
+                                <h1>DEVELOPER</h1>
+                            </>
+                        )}
                         <Link to="/about">
                             <button className="btn">FIND OUT MORE</button>
                         </Link>
@@ -301,33 +306,51 @@ const Home = () => {
 
                 <HomeSection
                     className="home-section"
-                    btnLink="work/nike"
-                    title="Nike"
-                    subtitle="React, WordPress"
-                    img={<img className="client-logo" src={nike} alt="Nike" />}
-                />
-
-                <HomeSection
-                    className="home-section"
-                    btnLink="/work/ey"
-                    color="#000"
-                    title="Ernst &amp; Young"
-                    subtitle="React, TypeScript, GraphQl"
+                    btnLink={loggedIn ? "work/nike" : ""}
+                    title={loggedIn ? "Nike" : ""}
+                    subtitle={loggedIn ? "React, WordPress" : ""}
                     img={
-                        <img
-                            className="client-logo"
-                            src={ey}
-                            alt="Ernst &amp; Young"
-                        />
+                        loggedIn ? (
+                            <img
+                                className="client-logo"
+                                src={nike}
+                                alt="Nike"
+                            />
+                        ) : null
                     }
                 />
 
                 <HomeSection
                     className="home-section"
-                    btnLink="/work/firm"
-                    title="The Firm"
-                    subtitle="React, WordPress"
-                    img={<img className="client-logo" src={firm} alt="Nike" />}
+                    btnLink={loggedIn ? "/work/ey" : ""}
+                    color="#000"
+                    title={loggedIn ? "Ernst & Young" : ""}
+                    subtitle={loggedIn ? "React, TypeScript, GraphQl" : ""}
+                    img={
+                        loggedIn ? (
+                            <img
+                                className="client-logo"
+                                src={ey}
+                                alt="Ernst &amp; Young"
+                            />
+                        ) : null
+                    }
+                />
+
+                <HomeSection
+                    className="home-section"
+                    btnLink={loggedIn ? "/work/firm" : ""}
+                    title={loggedIn ? "The Firm" : ""}
+                    subtitle={loggedIn ? "React, WordPress" : ""}
+                    img={
+                        loggedIn ? (
+                            <img
+                                className="client-logo"
+                                src={firm}
+                                alt="Nike"
+                            />
+                        ) : null
+                    }
                 />
 
                 <Spacer />

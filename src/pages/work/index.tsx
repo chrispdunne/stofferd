@@ -67,41 +67,56 @@ const Work = () => {
     }, [setLoggedIn])
     return (
         <>
-            <Helmet>
-                <meta charSet="utf-8" />
-                <title>
-                    Stoffer D - React, WordPress, TypeScript Developer
-                </title>
-                <link rel="canonical" href="https://stofferd.com" />
-                <link rel="shortcut icon" type="image/png" href={favicon} />
-            </Helmet>
-            <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-            <WorkPage>
-                <Nav white />
-                <h1>Work</h1>
-                <div className="work-container">
-                    <Link to="/work/nike">
-                        <div
-                            className="work-item"
-                            style={{ backgroundImage: "url(" + nike + ")" }}
+            {!loggedIn ? (
+                <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+            ) : (
+                <>
+                    <Helmet>
+                        <meta charSet="utf-8" />
+                        <title>
+                            Stoffer D - React, WordPress, TypeScript Developer
+                        </title>
+                        <link rel="canonical" href="https://stofferd.com" />
+                        <link
+                            rel="shortcut icon"
+                            type="image/png"
+                            href={favicon}
                         />
-                    </Link>
+                    </Helmet>
+                    <WorkPage>
+                        <Nav white />
+                        <h1>Work</h1>
+                        <div className="work-container">
+                            <Link to="/work/nike">
+                                <div
+                                    className="work-item"
+                                    style={{
+                                        backgroundImage: "url(" + nike + ")",
+                                    }}
+                                />
+                            </Link>
 
-                    <Link to="/work/ey">
-                        <div
-                            className="work-item"
-                            style={{ backgroundImage: "url(" + ey + ")" }}
-                        />
-                    </Link>
+                            <Link to="/work/ey">
+                                <div
+                                    className="work-item"
+                                    style={{
+                                        backgroundImage: "url(" + ey + ")",
+                                    }}
+                                />
+                            </Link>
 
-                    <Link to="/work/firm">
-                        <div
-                            className="work-item"
-                            style={{ backgroundImage: "url(" + firm + ")" }}
-                        />
-                    </Link>
-                </div>
-            </WorkPage>
+                            <Link to="/work/firm">
+                                <div
+                                    className="work-item"
+                                    style={{
+                                        backgroundImage: "url(" + firm + ")",
+                                    }}
+                                />
+                            </Link>
+                        </div>
+                    </WorkPage>
+                </>
+            )}
         </>
     )
 }

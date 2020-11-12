@@ -1,6 +1,7 @@
 import React from "react"
 import Nav from "../components/Nav.tsx"
 import styled from "styled-components"
+import Login from "../components/Login"
 
 const FourOhFour = styled.div`
     width: 100%;
@@ -15,11 +16,26 @@ const FourOhFour = styled.div`
     }
 `
 const NotFound = () => {
+    const [loggedIn, _setLoggedIn] = React.useState(false)
+    const setLoggedIn = React.useCallback(() => {
+        _setLoggedIn(true)
+        window.localStorage.setItem("loggedin", "true")
+    }, [_setLoggedIn])
+    React.useEffect(() => {
+        if (window.localStorage.getItem("loggedin")) setLoggedIn()
+    }, [setLoggedIn])
+
     return (
-        <FourOhFour>
-            <Nav />
-            <div className="msg">Page not found</div>
-        </FourOhFour>
+        <>
+            {!loggedIn ? (
+                <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+            ) : (
+                <FourOhFour>
+                    <Nav />
+                    <div className="msg">Page not found</div>
+                </FourOhFour>
+            )}
+        </>
     )
 }
 

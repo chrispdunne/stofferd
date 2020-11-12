@@ -44,21 +44,30 @@ const Contact = () => {
 
     return (
         <>
-            <Helmet>
-                <meta charSet="utf-8" />
-                <title>
-                    Stoffer D - React, WordPress, TypeScript Developer
-                </title>
-                <link rel="canonical" href="https://stofferd.com" />
-                <link rel="shortcut icon" type="image/png" href={favicon} />
-            </Helmet>
-            <Nav white />
-
-            <ContactPage>
+            {!loggedIn ? (
                 <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-                <h1>Contact</h1>
-                <ContactForm />
-            </ContactPage>
+            ) : (
+                <>
+                    <Helmet>
+                        <meta charSet="utf-8" />
+                        <title>
+                            Stoffer D - React, WordPress, TypeScript Developer
+                        </title>
+                        <link rel="canonical" href="https://stofferd.com" />
+                        <link
+                            rel="shortcut icon"
+                            type="image/png"
+                            href={favicon}
+                        />
+                    </Helmet>
+                    <Nav white />
+
+                    <ContactPage>
+                        <h1>Contact</h1>
+                        <ContactForm />
+                    </ContactPage>
+                </>
+            )}
         </>
     )
 }

@@ -173,39 +173,49 @@ const About = () => {
 
     return (
         <>
-            <Helmet>
-                <meta charSet="utf-8" />
-                <title>
-                    About Stoffer D - React, WordPress, TypeScript Developer
-                </title>
-                <link rel="canonical" href="https://stofferd.com" />
-                <link rel="shortcut icon" type="image/png" href={favicon} />
-            </Helmet>
-            <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+            {!loggedIn ? (
+                <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+            ) : (
+                <>
+                    <Helmet>
+                        <meta charSet="utf-8" />
+                        <title>
+                            About Stoffer D - React, WordPress, TypeScript
+                            Developer
+                        </title>
+                        <link rel="canonical" href="https://stofferd.com" />
+                        <link
+                            rel="shortcut icon"
+                            type="image/png"
+                            href={favicon}
+                        />
+                    </Helmet>
 
-            <Nav white />
+                    <Nav white />
 
-            <AboutPage>
-                <h1>About Stoffer</h1>
-                <div className="timeline" ref={timeline}>
-                    {sections.map((section, i) => {
-                        return (
-                            <TimelineSection
-                                key={i}
-                                className="timeline-section"
-                                date={section.date}
-                                where={section.where}
-                                desc={section.desc}
-                                callout={
-                                    section.callout
-                                        ? section.callout
-                                        : undefined
-                                }
-                            />
-                        )
-                    })}
-                </div>
-            </AboutPage>
+                    <AboutPage>
+                        <h1>About Stoffer</h1>
+                        <div className="timeline" ref={timeline}>
+                            {sections.map((section, i) => {
+                                return (
+                                    <TimelineSection
+                                        key={i}
+                                        className="timeline-section"
+                                        date={section.date}
+                                        where={section.where}
+                                        desc={section.desc}
+                                        callout={
+                                            section.callout
+                                                ? section.callout
+                                                : undefined
+                                        }
+                                    />
+                                )
+                            })}
+                        </div>
+                    </AboutPage>
+                </>
+            )}
         </>
     )
 }
