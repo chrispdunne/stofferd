@@ -79,6 +79,18 @@ const StyledSection = styled.div`
         font-weight: 900;
         text-transform: uppercase;
     }
+    /* SMALL < 979px */
+    @media only screen and (max-width: 61.1875em) {
+        .text {
+            max-width: 40rem;
+        }
+    }
+    /* BIG 980px + */
+    @media only screen and (min-width: 61.25em) {
+        .text {
+            max-width: 40rem;
+        }
+    }
 `
 
 const TimelineSection = ({
