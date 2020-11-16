@@ -9,6 +9,7 @@ type Props = {
 
 const Firm = ({ data }: Props) => {
     console.log(data)
+
     const imgs = sortImgs(data.allFile.edges)
     return (
         <Work
@@ -18,8 +19,7 @@ const Firm = ({ data }: Props) => {
                     caption: image.node.name.slice(3).replace(/-/g, " "),
                 }
             })}
-            // subtitle="React, TypeScript, GraphQL"
-            subtitle={`The Firm wanted`}
+            subtitle={`The Firm wanted a new booking app to schedule large crews producing TV Shows & other events. I built the new app with a GraphQL backend & API and a React frontend. It features calendar booking for multiple people, text & email sending via Twilio and PostMark, live toast notifcations and user management. There is also a crew view for so crew members can log in to the web app and view their own personal bookings calendar.`}
             title="The Firm"
         />
     )

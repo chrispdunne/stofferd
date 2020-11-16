@@ -93,6 +93,7 @@ const WorkPage = styled.div`
     .img {
         max-width: 95vw;
         max-height: 50vh;
+        display: block;
     }
     /* 980px + */
     @media only screen and (min-width: 61.25em) {
@@ -103,6 +104,7 @@ const WorkPage = styled.div`
         .img {
             max-width: calc(100vw - 25rem);
             max-height: 50vh;
+            display: block;
         }
     }
 
@@ -114,6 +116,7 @@ const WorkPage = styled.div`
         .img {
             max-width: calc(100vw - 6rem);
             max-height: calc(50vh - 7rem);
+            display: block;
         }
     }
 
@@ -224,6 +227,7 @@ const WorkPage = styled.div`
 `
 
 const Work = ({ images, subtitle, title }: Props) => {
+    console.log("LOADING")
     const workImages = React.useRef<HTMLDivElement>(null)
     const spots = React.useRef<HTMLDivElement>(null)
     const [tl, setTl] = React.useState<any>(null)

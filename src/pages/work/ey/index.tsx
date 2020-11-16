@@ -9,7 +9,7 @@ type Props = {
 }
 
 const Nike = ({ data }: Props) => {
-    console.log(data)
+    // console.log(data)
     const imgs = sortImgs(data.allFile.edges)
     return (
         <Work
